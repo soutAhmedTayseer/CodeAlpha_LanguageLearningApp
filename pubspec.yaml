@@ -56,5 +56,5 @@ flutter:
   generate: true  # Enable code generation for localization files
 
   assets:
-    - assets/images/  # Directory for image assets
+    - assets/images/
     - assets/lang/
