@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_projects/management/cubit.dart';
 import 'package:flutter_projects/management/states.dart';
+import 'package:flutter_projects/screens/community_screen.dart';
+import 'package:flutter_projects/screens/home_screen.dart';
 import 'package:flutter_projects/screens/themes_screen.dart';
 import 'about_screen.dart';
 import 'languages_translation_screen.dart';
-import 's1.dart'; // Importing screen s1
-import 's2.dart'; // Importing screen s2
-import 's3.dart'; // Importing screen s3
+import 'Lessons_screen.dart';
+import 'quizzes_screen.dart';
+import 'progress_screen.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});
@@ -65,9 +67,11 @@ class _HomeLayoutState extends State<HomeLayout> {
                 IndexedStack(
                   index: appCubit.currentIndex,
                   children: const [
-                    S1(),  // Screen 1
-                    S2(),  // Screen 2
-                    S3(),  // Screen 3
+                    Lessons(),
+                    Quizzes(),
+                    HomeScreen(),
+                    Progress(),
+                    Community(),
                   ],
                 ),
               ],
@@ -120,19 +124,28 @@ class _HomeLayoutState extends State<HomeLayout> {
               onTap: (index) => appCubit.changeIndex(index),
               items: [
                 BottomNavigationBarItem(
-                  icon: const Icon(Icons.looks_one),
-                  label: tr('Screen 1'), // Use `tr()` for translation
+                  icon: const Icon(Icons.play_lesson),
+                  label: tr('Lessons'), // Use `tr()` for translation
                 ),
                 BottomNavigationBarItem(
-                  icon: const Icon(Icons.looks_two),
-                  label: tr('Screen 2'), // Use `tr()` for translation
+                  icon: const Icon(Icons.quiz),
+                  label: tr('Quizzes'), // Use `tr()` for translation
                 ),
                 BottomNavigationBarItem(
-                  icon: const Icon(Icons.looks_3),
-                  label: tr('Screen 3'), // Use `tr()` for translation
+                  icon: const Icon(Icons.home_filled),
+                  label: tr('Home'), // Use `tr()` for translation
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.bar_chart),
+                  label: tr('Progress'), // Use `tr()` for translation
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.people),
+                  label: tr('Community'), // Use `tr()` for translation
                 ),
               ],
               selectedItemColor: Colors.cyan,
+              unselectedItemColor: Colors.grey,
             ),
           ),
         );
