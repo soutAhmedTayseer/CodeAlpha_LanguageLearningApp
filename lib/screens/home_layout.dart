@@ -5,10 +5,10 @@ import 'package:flutter_projects/management/cubit.dart';
 import 'package:flutter_projects/management/states.dart';
 import 'package:flutter_projects/screens/community_screen.dart';
 import 'package:flutter_projects/screens/home_screen.dart';
-import 'package:flutter_projects/screens/themes_screen.dart';
-import 'about_screen.dart';
+import 'package:flutter_projects/screens/drawer/themes_screen.dart';
+import 'drawer/about_screen.dart';
 import 'languages_translation_screen.dart';
-import 'Lessons_screen.dart';
+import 'lessons_screen.dart';
 import 'quizzes_screen.dart';
 import 'progress_screen.dart';
 
