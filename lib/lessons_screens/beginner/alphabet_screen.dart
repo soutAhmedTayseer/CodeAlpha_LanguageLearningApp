@@ -1,13 +1,13 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../management/alphabet_cubit.dart';
-import '../management/alphabet_states.dart';
+import '../../management/alphabet_cubit.dart';
+import '../../management/alphabet_states.dart';
 
 class AlphabetScreen extends StatelessWidget {
   final List<Map<String, String>> alphabets = List.generate(
     26,
-    (index) => {
+        (index) => {
       'letter': String.fromCharCode(65 + index), // Generates A-Z in uppercase
       'sound': 'sounds/letters/${String.fromCharCode(65 + index)}.mp3'
     },
@@ -25,7 +25,7 @@ class AlphabetScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4, // Four cards per row
+            crossAxisCount: 3, // Four cards per row
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
           ),
@@ -55,7 +55,7 @@ class AlphabetScreen extends StatelessWidget {
                   child: Text(
                     alphabet,
                     style: const TextStyle(
-                      fontSize: 32,
+                      fontSize: 48,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -131,8 +131,15 @@ class _AlphabetDetailContentState extends State<AlphabetDetailContent> {
     }
   }
 
+  String _getLetterType(String letter) {
+    const vowels = ['A', 'E', 'I', 'O', 'U'];
+    return vowels.contains(letter) ? 'Vowel' : 'Consonant';
+  }
+
   @override
   Widget build(BuildContext context) {
+    final letterType = _getLetterType(widget.alphabet);
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Center(
@@ -145,13 +152,21 @@ class _AlphabetDetailContentState extends State<AlphabetDetailContent> {
               style: const TextStyle(
                 fontSize: 120,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'This letter is a $letterType',
+              style: const TextStyle(
+                fontSize: 24,
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            IconButton(
+              icon: const Icon(Icons.volume_up, size: 48),
               onPressed: _playSound,
-              child: const Text('Play Sound'),
+              tooltip: 'Play Sound',
+              color: Colors.blueAccent,
             ),
           ],
         ),

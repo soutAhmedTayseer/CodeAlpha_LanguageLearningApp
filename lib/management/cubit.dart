@@ -11,7 +11,7 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(BuildContext context) => BlocProvider.of<AppCubit>(context);
 
   // Index for bottom navigation
-  int _currentIndex = 2; // Start on Categories page
+  int _currentIndex = 0; // Start on Categories page
   int get currentIndex => _currentIndex;
 
   // Toggle between dark and light mode
