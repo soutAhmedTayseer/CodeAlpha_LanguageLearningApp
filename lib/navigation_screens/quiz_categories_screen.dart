@@ -18,10 +18,26 @@ class _CategoriesScreenState
 
   @override
   Widget build(BuildContext context) {
+    // Filter categories based on the search query
     final filteredCategories = categories
         .where((category) =>
             category['title'].toLowerCase().contains(searchQuery.toLowerCase()))
         .toList();
+
+    // Create groups of four categories for each carousel
+    List<List<dynamic>> categoryGroups = [];
+    for (int i = 0; i < filteredCategories.length; i += 4) {
+      categoryGroups.add(filteredCategories.sublist(
+          i,
+          i + 4 > filteredCategories.length
+              ? filteredCategories.length
+              : i + 4));
+    }
+
+    // Limit to three carousels or available groups
+    List<List<dynamic>> threeCarousels = categoryGroups.length > 3
+        ? categoryGroups.sublist(0, 3)
+        : categoryGroups;
 
     return Scaffold(
       appBar: AppBar(
@@ -30,8 +46,8 @@ class _CategoriesScreenState
       body: Stack(
         children: [
           const BackgroundImage(
-              imagePath:
-                  'assets/images/backkground.jpeg'),
+            imagePath: 'assets/images/backkground.jpeg',
+          ),
           Column(
             children: [
               // Search bar at the top
@@ -43,123 +59,136 @@ class _CategoriesScreenState
                 },
               ),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6.0), // Add padding for left alignment
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Card(
-                    elevation: 4,
-                    child: Container(
-                      padding: const EdgeInsets.all(16.0),
-                      child: const Text(
-                        'Offline Quizzes',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Expanded to take available height
+              Expanded(
+                child: ListView.builder(
+                  itemCount: threeCarousels.length,
+                  itemBuilder: (context, groupIndex) {
+                    // Define titles for each carousel
+                    String carouselTitle;
+                    switch (groupIndex) {
+                      case 0:
+                        carouselTitle = 'Beginner Quizzes';
+                        break;
+                      case 1:
+                        carouselTitle = 'Intermediate Quizzes';
+                        break;
+                      case 2:
+                        carouselTitle = 'Advanced Quizzes';
+                        break;
+                      default:
+                        carouselTitle = '';
+                    }
 
-              // Carousel, constrained to be smaller
-              SizedBox(
-                height: 220, // Limit the height of the carousel
-                child: PageView.builder(
-                  controller: PageController(viewportFraction: 0.85),
-                  itemCount: filteredCategories.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final category = filteredCategories[index];
-                    return GestureDetector(
-                      onTap: () {
-                        // Navigate to QuizScreen when a card is tapped
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => QuizScreen(
-                              categoryTitle: category['title'],
-                              questions: category['questions'],
-                            ),
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                        child: Transform.scale(
-                          scale: 0.9, // Slightly scale the selected card
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              image: DecorationImage(
-                                image: AssetImage(category['image']),
-                                fit: BoxFit.cover,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                ),
-                              ],
-                            ),
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
+                    return Column(
+                      children: [
+                        // Header for each carousel
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Card(
+                              elevation: 4,
                               child: Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(8.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.6),
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(16),
-                                    bottomRight: Radius.circular(16),
-                                  ),
-                                ),
+                                padding: const EdgeInsets.all(16.0),
                                 child: Text(
-                                  category['title'],
-                                  textAlign: TextAlign.center,
+                                  carouselTitle,
                                   style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    shadows: [
-                                      Shadow(
-                                        offset: Offset(2, 2),
-                                        blurRadius: 3.0,
-                                        color: Colors.black54,
-                                      ),
-                                    ],
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 220, // Limit the height of each carousel
+                          child: PageView.builder(
+                            controller: PageController(viewportFraction: 0.85),
+                            itemCount: threeCarousels[groupIndex]
+                                .length, // Set to the number of categories
+                            itemBuilder: (context, index) {
+                              final category =
+                                  threeCarousels[groupIndex][index];
+                              return GestureDetector(
+                                onTap: () {
+                                  // Navigate to QuizScreen when a card is tapped
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => QuizScreen(
+                                        categoryTitle: category['title'],
+                                        questions: category['questions'],
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Container(
+                                    width:
+                                        150, // Set a fixed width for each card
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      image: DecorationImage(
+                                        image: AssetImage(category['image']),
+                                        fit: BoxFit.cover,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.2),
+                                          spreadRadius: 2,
+                                          blurRadius: 5,
+                                        ),
+                                      ],
+                                    ),
+                                    child: Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Container(
+                                        width: double.infinity,
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.6),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(16),
+                                            bottomRight: Radius.circular(16),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          category['title'],
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            shadows: [
+                                              Shadow(
+                                                offset: Offset(2, 2),
+                                                blurRadius: 3.0,
+                                                color: Colors.black54,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 16), // Spacing between carousels
+                      ],
                     );
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Card(
-                    elevation: 4,
-                    child: Container(
-                      padding: const EdgeInsets.all(16.0),
-                      child: const Text(
-                        'Online Quizzes',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
             ],
           ),
         ],
@@ -167,4 +196,3 @@ class _CategoriesScreenState
     );
   }
 }
-
