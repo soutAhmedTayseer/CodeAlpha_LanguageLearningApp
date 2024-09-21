@@ -61,11 +61,11 @@ class _HomeLayoutState extends State<HomeLayout> {
                 // Use IndexedStack to keep the state of the screens
                 IndexedStack(
                   index: appCubit.currentIndex,
-                  children: [
-                    const Lessons(),
-                    const QuizCategoriesScreenCategoriesScreen(),
-                    const HomeScreen(),
-                    const Progress(),
+                  children: const [
+                    Lessons(),
+                    QuizCategoriesScreenCategoriesScreen(),
+                    HomeScreen(),
+                    Progress(),
                     CommunityScreen(),
                   ],
                 ),
