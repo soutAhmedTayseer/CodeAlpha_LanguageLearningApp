@@ -38,16 +38,23 @@ class Lessons extends StatelessWidget {
           // Main content
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Beginner Section
-                  Center(
-                    child: const Text(
-                      '"Beginner"',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Colors.black),
-                    ).tr(),
+                  Card(
+                    elevation: 4,
+                    child: Container(
+                      padding: const EdgeInsets.all(16.0),
+                      child: const Text(
+                        'Beginner',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
                   buildLessonRow(context, [
@@ -80,11 +87,18 @@ class Lessons extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   // Intermediate Section
-                  Center(
-                    child: const Text(
-                      '"Intermediate"',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Colors.black),
-                    ).tr(),
+                  Card(
+                    elevation: 4,
+                    child: Container(
+                      padding: const EdgeInsets.all(16.0),
+                      child: const Text(
+                        'Intermediate',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
                   buildLessonRow(context, [
@@ -117,11 +131,18 @@ class Lessons extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   // Advanced Section
-                  Center(
-                    child: const Text(
-                      '"Advanced"',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Colors.black),
-                    ).tr(),
+                  Card(
+                    elevation: 4,
+                    child: Container(
+                      padding: const EdgeInsets.all(16.0),
+                      child: const Text(
+                        'Advanced',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
                   buildLessonRow(context, [
