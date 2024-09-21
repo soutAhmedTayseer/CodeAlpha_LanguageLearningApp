@@ -58,21 +58,15 @@ class _HomeLayoutState extends State<HomeLayout> {
             ),
             body: Stack(
               children: [
-                Positioned.fill(
-                  child: Image.asset(
-                    'assets/images/background.jpeg',
-                    fit: BoxFit.cover,
-                  ),
-                ),
                 // Use IndexedStack to keep the state of the screens
                 IndexedStack(
                   index: appCubit.currentIndex,
-                  children: const [
-                    Lessons(),
-                    QuizCategoriesScreenCategoriesScreen(),
-                    HomeScreen(),
-                    Progress(),
-                    Community(),
+                  children: [
+                    const Lessons(),
+                    const QuizCategoriesScreenCategoriesScreen(),
+                    const HomeScreen(),
+                    const Progress(),
+                    CommunityScreen(),
                   ],
                 ),
               ],
