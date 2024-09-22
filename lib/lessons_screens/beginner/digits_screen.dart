@@ -4,9 +4,20 @@ import 'package:audioplayers/audioplayers.dart';
 class DigitsScreen extends StatelessWidget {
   final List<Map<String, String>> digits = List.generate(
     10,
-        (index) => {
+    (index) => {
       'digit': '${index + 1}', // Generates digits 1-10
-      'word': ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'][index], // Word representation
+      'word': [
+        'One',
+        'Two',
+        'Three',
+        'Four',
+        'Five',
+        'Six',
+        'Seven',
+        'Eight',
+        'Nine',
+        'Ten'
+      ][index], // Word representation
       'sound': 'sounds/digits/${index + 1}.mp3' // Adjust path as necessary
     },
   );
@@ -68,7 +79,6 @@ class DigitsScreen extends StatelessWidget {
     );
   }
 }
-
 
 class DigitDetailScreen extends StatelessWidget {
   final String digit;
@@ -134,4 +144,3 @@ class DigitDetailScreen extends StatelessWidget {
     }
   }
 }
-

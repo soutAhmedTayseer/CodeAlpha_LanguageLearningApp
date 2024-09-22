@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
@@ -229,7 +230,7 @@ class _ForumScreenState extends State<CommunityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Community Forum'),
+        title: const Text('Community Forum',style: TextStyle(fontSize: 18),).tr(),
       ),
       body: Stack(
         children: [

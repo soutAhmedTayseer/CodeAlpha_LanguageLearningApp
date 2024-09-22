@@ -6,7 +6,8 @@ import 'package:flutter_projects/management/states.dart';
 import '../components/drawer/about_screen.dart';
 import '../components/drawer/themes_screen.dart';
 import '../navigation_screens/community_screen.dart';
-import '../navigation_screens/home_screen.dart';
+import '../components/api_for_movies.dart';
+import '../navigation_screens/entertainment_screen.dart';
 import '../navigation_screens/lessons_screen.dart';
 import '../navigation_screens/progress_screen.dart';
 import '../navigation_screens/quiz_categories_screen.dart';
@@ -51,8 +52,8 @@ class _HomeLayoutState extends State<HomeLayout> {
           home: Scaffold(
             appBar: AppBar(
               title: Text(
-                tr('App'), // Use `tr()` for translation
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                tr('Language Learning App'), // Use `tr()` for translation
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               centerTitle: true,
             ),
@@ -64,7 +65,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                   children: const [
                     Lessons(),
                     QuizCategoriesScreenCategoriesScreen(),
-                    HomeScreen(),
+                    EntertainmentScreen(),
                     Progress(),
                     CommunityScreen(),
                   ],
@@ -127,8 +128,8 @@ class _HomeLayoutState extends State<HomeLayout> {
                   label: tr('Quizzes'), // Use `tr()` for translation
                 ),
                 BottomNavigationBarItem(
-                  icon: const Icon(Icons.home_filled),
-                  label: tr('Home'), // Use `tr()` for translation
+                  icon: const Icon(Icons.movie),
+                  label: tr('Entertainment'), // Use `tr()` for translation
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.bar_chart),

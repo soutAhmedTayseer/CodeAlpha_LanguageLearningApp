@@ -163,7 +163,7 @@ class _LessonsState extends State<Lessons> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lessons').tr(),
+        title: const Text('Your Lessons',style: TextStyle(fontSize: 18),).tr(),
       ),
       body: Stack(
         children: [

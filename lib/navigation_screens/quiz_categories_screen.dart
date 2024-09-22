@@ -41,7 +41,7 @@ class _CategoriesScreenState
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Quizzes').tr(),
+        title: const Text('Quizzes',style: TextStyle(fontSize: 18),).tr(),
       ),
       body: Stack(
         children: [

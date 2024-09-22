@@ -56,6 +56,9 @@ class _ProgressState extends State<Progress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Progress & Achievements',style: TextStyle(fontSize: 18),).tr(),
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
