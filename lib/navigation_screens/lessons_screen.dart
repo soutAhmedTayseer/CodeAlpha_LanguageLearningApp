@@ -14,7 +14,6 @@ import '../lessons_screens/beginner/basic_vocabulary.dart';
 import '../lessons_screens/intermediate/everyday_conversations_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// Main Lessons Page
 class Lessons extends StatefulWidget {
   const Lessons({super.key});
 
@@ -142,16 +141,23 @@ class _LessonsState extends State<Lessons> {
     }
   }
 
-  // Reset all lessons to locked state
+// Reset all lessons to locked state and clear progress and achievements
   void resetLessons() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Reset all lessons to locked and not completed
     for (int i = 0; i < lessons.length; i++) {
       await prefs.setBool('lesson_$i', false); // Lock all lessons
-      await prefs.setBool(
-          'completed_lesson_$i', false); // Reset completion status
+      await prefs.setBool('completed_lesson_$i', false); // Reset completion status
     }
+
+    // Clear progress and achievements
+    await prefs.remove('progress_lessons'); // Remove the progress lessons list
+    await prefs.remove('achievement_lessons'); // Remove the achievements lessons list
+
     loadLessonUnlockStatus(); // Reload the lessons' lock status after reset
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +199,7 @@ class _LessonsState extends State<Lessons> {
               return AlertDialog(
                 title: const Text('Reset All Lessons').tr(),
                 content: const Text(
-                        'Are you sure you want to reset all lessons to locked state?')
+                    'Are you sure you want to reset all lessons to locked state?')
                     .tr(),
                 actions: [
                   TextButton(
@@ -224,7 +230,7 @@ class _LessonsState extends State<Lessons> {
   Widget buildLessonRow(BuildContext context, List<LessonData> lessons) {
     return Column(
       children:
-          lessons.map((lesson) => buildLessonCard(context, lesson)).toList(),
+      lessons.map((lesson) => buildLessonCard(context, lesson)).toList(),
     );
   }
 
@@ -289,7 +295,6 @@ class _LessonsState extends State<Lessons> {
             );
           }
         } else {
-          // Navigate to the specified screen directly
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => lesson.screen),
@@ -297,89 +302,72 @@ class _LessonsState extends State<Lessons> {
         }
       },
       child: Card(
-        margin: const EdgeInsets.symmetric(vertical: 8),
         elevation: 4,
+        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(10),
         ),
-        color: lesson.isLocked
-            ? Colors.black54
-            : Colors.white, // Darker color if locked
-        child: Stack(
+        child: Column(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Opacity(
-                opacity: 0.9,
-                child: Image.asset(
-                  lesson.image,
-                  width: double.infinity,
-                  height: 120,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            if (lesson.isLocked) // Show lock icon if the lesson is locked
-              const Positioned(
-                bottom: 10,
-                right: 10,
-                child: Icon(
-                  Icons.lock,
-                  size: 48, // Increased size for the lock icon
-                  color: Colors.red, // Brighter color for the lock icon
-                ),
-              ),
-            Container(
-              width: double.infinity,
-              height: 120,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.black.withOpacity(0.4),
-              ),
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          lesson.title,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ).tr(),
-                        const SizedBox(height: 4),
-                        Text(
-                          lesson.description,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ).tr(),
-                      ],
-                    ),
+            Stack(
+              children: [
+                // Lesson image
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
                   ),
-                  if (!lesson
-                      .isLocked) // Show checkbox if the lesson is unlocked
-                    SizedBox(
-                      width: 30, // Increase width for the checkbox
-                      height: 30, // Increase height for the checkbox
-                      child: Checkbox(
-                        value: lesson.isCompleted,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            lesson.isCompleted = value ?? false;
-                          });
-                          completeLesson(lesson);
-                        },
-                        activeColor: Colors.green,
+                  child: Image.asset(
+                    lesson.image,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 150,
+                  ),
+                ),
+                // Locked icon overlay
+                if (lesson.isLocked)
+                  Positioned.fill(
+                    child: Container(
+                      color: Colors.black.withOpacity(0.6),
+                      child: const Center(
+                        child: Icon(
+                          Icons.lock,
+                          color: Colors.white,
+                          size: 50,
+                        ),
                       ),
                     ),
+                  ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Lesson title and description
+                  Text(
+                    lesson.title,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    lesson.description,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  // Completed checkbox
+                  CheckboxListTile(
+                    title: const Text('Completed').tr(),
+                    value: lesson.isCompleted,
+                    onChanged: lesson.isLocked
+                        ? null
+                        : (value) {
+                      setState(() {
+                        lesson.isCompleted = value ?? false;
+                      });
+                      completeLesson(lesson);
+                    },
+                  ),
                 ],
               ),
             ),
@@ -389,28 +377,52 @@ class _LessonsState extends State<Lessons> {
     );
   }
 
-  // Unlock a lesson
+  // Unlock a lesson and store progress in SharedPreferences
   void unlockLesson(LessonData lesson) async {
     int index = lessons.indexOf(lesson);
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('lesson_$index', true);
+
+    // Unlock the lesson
+    await prefs.setBool('lesson_$index', true);
+
+    // Add the lesson to the "In Progress" list in SharedPreferences
+    List<String>? progressLessons = prefs.getStringList('progress_lessons') ?? [];
+    if (!progressLessons.contains(lesson.title)) {
+      progressLessons.add(lesson.title);
+      await prefs.setStringList('progress_lessons', progressLessons);
+    }
+
     loadLessonUnlockStatus(); // Reload lesson statuses
   }
 
-  // Complete the lesson
+  // Mark a lesson as completed and update the progress and achievements
   void completeLesson(LessonData lesson) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(
-        'completed_lesson_${lessons.indexOf(lesson)}', lesson.isCompleted);
+
+    // Mark the lesson as completed
+    int index = lessons.indexOf(lesson);
+    await prefs.setBool('completed_lesson_$index', lesson.isCompleted);
+
+    if (lesson.isCompleted) {
+      // Move the lesson from progress to achievements
+      List<String>? progressLessons = prefs.getStringList('progress_lessons') ?? [];
+      progressLessons.remove(lesson.title);
+      await prefs.setStringList('progress_lessons', progressLessons);
+
+      List<String>? achievementLessons = prefs.getStringList('achievement_lessons') ?? [];
+      if (!achievementLessons.contains(lesson.title)) {
+        achievementLessons.add(lesson.title);
+        await prefs.setStringList('achievement_lessons', achievementLessons);
+      }
+    }
   }
 }
 
-// Lesson Data class
 class LessonData {
-  String title;
-  String description;
-  String image;
-  Widget screen;
+  final String title;
+  final String description;
+  final String image;
+  final Widget screen;
   bool isLocked;
   bool isCompleted;
 
@@ -419,7 +431,7 @@ class LessonData {
     required this.description,
     required this.image,
     required this.screen,
-    required this.isLocked,
-    required this.isCompleted,
+    this.isLocked = true,
+    this.isCompleted = false,
   });
 }
