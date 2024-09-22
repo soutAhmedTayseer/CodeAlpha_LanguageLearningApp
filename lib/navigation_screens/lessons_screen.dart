@@ -46,7 +46,6 @@ class _LessonsState extends State<Lessons> {
         isLocked: true,
         isCompleted: false,
       ),
-      // Other lessons remain locked
       LessonData(
         title: 'Colors',
         description: 'Know more about colors',
@@ -128,17 +127,7 @@ class _LessonsState extends State<Lessons> {
         isCompleted: false,
       ),
     ];
-    resetLessons();
     loadLessonUnlockStatus();
-  }
-
-  // Reset all lessons to locked and clear completion status
-  void resetLessons() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    for (int i = 0; i < lessons.length; i++) {
-      prefs.setBool('lesson_$i', false);
-      prefs.setBool('completed_lesson_$i', false);
-    }
   }
 
   // Load lesson unlock status from shared preferences
@@ -151,6 +140,17 @@ class _LessonsState extends State<Lessons> {
         lessons[i].isCompleted = prefs.getBool('completed_lesson_$i') ?? false;
       });
     }
+  }
+
+  // Reset all lessons to locked state
+  void resetLessons() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    for (int i = 0; i < lessons.length; i++) {
+      await prefs.setBool('lesson_$i', false); // Lock all lessons
+      await prefs.setBool(
+          'completed_lesson_$i', false); // Reset completion status
+    }
+    loadLessonUnlockStatus(); // Reload the lessons' lock status after reset
   }
 
   @override
@@ -184,6 +184,38 @@ class _LessonsState extends State<Lessons> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Reset All Lessons').tr(),
+                content: const Text(
+                        'Are you sure you want to reset all lessons to locked state?')
+                    .tr(),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('No').tr(),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      resetLessons();
+                      Navigator.of(context).pop(); // Close the dialog
+                    },
+                    child: const Text('Yes').tr(),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        backgroundColor: Colors.cyan,
+        child: const Icon(Icons.refresh),
       ),
     );
   }
