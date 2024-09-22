@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter_projects/screens/result_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizScreen extends StatefulWidget {
   final String categoryTitle;
@@ -202,7 +203,7 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  void _submitQuiz() {
+  void _submitQuiz() async {
     int score = 0;
     final correctAnswers = <int, String?>{};
 
@@ -213,6 +214,16 @@ class _QuizScreenState extends State<QuizScreen> {
         score++;
       }
       correctAnswers[i] = question['answer'];
+    }
+
+    // Save completed quiz category to SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> completedQuizzes =
+        prefs.getStringList('completed_quizzes') ?? [];
+
+    if (!completedQuizzes.contains(widget.categoryTitle)) {
+      completedQuizzes.add(widget.categoryTitle);
+      await prefs.setStringList('completed_quizzes', completedQuizzes);
     }
 
     // Navigate to result screen
