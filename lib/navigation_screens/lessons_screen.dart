@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_projects/lessons_screens/beginner/alphabet_screen.dart';
+import 'package:flutter_projects/lessons_screens/beginner/basic_vocabulary.dart';
 import 'package:flutter_projects/lessons_screens/beginner/colors_screen.dart';
 import 'package:flutter_projects/lessons_screens/beginner/digits_screen.dart';
-import 'package:flutter_projects/lessons_screens/intermediate/pronouns_and_prepositions_screen.dart';
-import 'package:flutter_projects/lessons_screens/intermediate/simple_sentences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../lessons_screens/advanced/conditional_screen.dart';
 import '../lessons_screens/advanced/past_simple_tense_screen.dart';
 import '../lessons_screens/advanced/present_simple_tense_screen.dart';
 import '../lessons_screens/advanced/reported_speech_screen.dart';
 import '../lessons_screens/intermediate/basic_greetings.dart';
-import '../lessons_screens/beginner/basic_vocabulary.dart';
 import '../lessons_screens/intermediate/everyday_conversations_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../lessons_screens/intermediate/pronouns_and_prepositions_screen.dart';
+import '../lessons_screens/intermediate/simple_sentences.dart';
 
 class Lessons extends StatefulWidget {
   const Lessons({super.key});
@@ -33,7 +33,7 @@ class _LessonsState extends State<Lessons> {
         title: 'Alphabet & Phonics',
         description: 'Learn the English alphabet and basic sounds.',
         image: 'assets/images/cards_background/11.jpeg',
-        screen: AlphabetScreen(),
+        screen: AlphabetScreen(), // Placeholder screen
         isLocked: false, // First lesson unlocked
         isCompleted: false,
       ),
@@ -41,7 +41,7 @@ class _LessonsState extends State<Lessons> {
         title: 'Digits',
         description: 'Learn digits from 1 to 10',
         image: 'assets/images/cards_background/11.jpeg',
-        screen: DigitsScreen(),
+        screen: DigitsScreen(), // Placeholder screen
         isLocked: true,
         isCompleted: false,
       ),
@@ -49,7 +49,7 @@ class _LessonsState extends State<Lessons> {
         title: 'Colors',
         description: 'Know more about colors',
         image: 'assets/images/cards_background/11.jpeg',
-        screen: ColorsScreen(),
+        screen: ColorsScreen(), // Placeholder screen
         isLocked: true,
         isCompleted: false,
       ),
@@ -57,10 +57,11 @@ class _LessonsState extends State<Lessons> {
         title: 'Basic Vocabulary',
         description: 'Learn everyday words like colors, numbers, and more.',
         image: 'assets/images/cards_background/11.jpeg',
-        screen: BasicVocabularyScreen(),
+        screen: BasicVocabularyScreen(), // Placeholder screen
         isLocked: true,
         isCompleted: false,
       ),
+
       LessonData(
         title: 'Basic Greetings',
         description: 'Common phrases like "Hello" and "How are you?".',
@@ -141,7 +142,7 @@ class _LessonsState extends State<Lessons> {
     }
   }
 
-// Reset all lessons to locked state and clear progress and achievements
+  // Reset all lessons to locked state and clear progress and achievements
   void resetLessons() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -157,7 +158,6 @@ class _LessonsState extends State<Lessons> {
 
     loadLessonUnlockStatus(); // Reload the lessons' lock status after reset
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -229,8 +229,7 @@ class _LessonsState extends State<Lessons> {
   // Function to build a row of lesson cards
   Widget buildLessonRow(BuildContext context, List<LessonData> lessons) {
     return Column(
-      children:
-      lessons.map((lesson) => buildLessonCard(context, lesson)).toList(),
+      children: lessons.map((lesson) => buildLessonCard(context, lesson)).toList(),
     );
   }
 
@@ -307,6 +306,7 @@ class _LessonsState extends State<Lessons> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
+        color: lesson.isCompleted ? Colors.green[600] : Colors.grey, // Change card color if completed
         child: Column(
           children: [
             Stack(
@@ -359,7 +359,7 @@ class _LessonsState extends State<Lessons> {
                   CheckboxListTile(
                     title: const Text('Completed').tr(),
                     value: lesson.isCompleted,
-                    onChanged: lesson.isLocked
+                    onChanged: lesson.isLocked || lesson.isCompleted
                         ? null
                         : (value) {
                       setState(() {
@@ -392,32 +392,38 @@ class _LessonsState extends State<Lessons> {
       await prefs.setStringList('progress_lessons', progressLessons);
     }
 
-    loadLessonUnlockStatus(); // Reload lesson statuses
+    loadLessonUnlockStatus(); // Reload lessons after unlocking
   }
 
-  // Mark a lesson as completed and update the progress and achievements
+  // Mark a lesson as completed and store progress in SharedPreferences
+// Mark a lesson as completed and store progress in SharedPreferences
   void completeLesson(LessonData lesson) async {
+    int index = lessons.indexOf(lesson);
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    // Mark the lesson as completed
-    int index = lessons.indexOf(lesson);
-    await prefs.setBool('completed_lesson_$index', lesson.isCompleted);
+    // Mark lesson as completed
+    await prefs.setBool('completed_lesson_$index', true);
 
-    if (lesson.isCompleted) {
-      // Move the lesson from progress to achievements
-      List<String>? progressLessons = prefs.getStringList('progress_lessons') ?? [];
+    // Remove the lesson from the "In Progress" list
+    List<String>? progressLessons = prefs.getStringList('progress_lessons') ?? [];
+    if (progressLessons.contains(lesson.title)) {
       progressLessons.remove(lesson.title);
       await prefs.setStringList('progress_lessons', progressLessons);
-
-      List<String>? achievementLessons = prefs.getStringList('achievement_lessons') ?? [];
-      if (!achievementLessons.contains(lesson.title)) {
-        achievementLessons.add(lesson.title);
-        await prefs.setStringList('achievement_lessons', achievementLessons);
-      }
     }
+
+    // Add the lesson to the "Completed" list in SharedPreferences (Achievements)
+    List<String>? completedLessons = prefs.getStringList('achievement_lessons') ?? [];
+    if (!completedLessons.contains(lesson.title)) {
+      completedLessons.add(lesson.title);
+      await prefs.setStringList('achievement_lessons', completedLessons);
+    }
+
+    loadLessonUnlockStatus(); // Reload lessons after completion
   }
+
 }
 
+// LessonData class to hold lesson details
 class LessonData {
   final String title;
   final String description;
@@ -431,7 +437,7 @@ class LessonData {
     required this.description,
     required this.image,
     required this.screen,
-    this.isLocked = true,
-    this.isCompleted = false,
+    required this.isLocked,
+    required this.isCompleted,
   });
 }
