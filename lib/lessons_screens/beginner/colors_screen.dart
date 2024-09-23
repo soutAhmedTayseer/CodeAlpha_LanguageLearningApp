@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-class ColorsScreen extends StatelessWidget {
+class ColorsScreen extends StatefulWidget {
+  ColorsScreen({super.key});
+
+  @override
+  _ColorsScreenState createState() => _ColorsScreenState();
+}
+
+class _ColorsScreenState extends State<ColorsScreen> {
   final List<Map<String, String>> colors = [
     {'name': 'Red', 'code': Colors.red.value.toString(), 'sound': 'sounds/colors/red.mp3'},
     {'name': 'Green', 'code': Colors.green.value.toString(), 'sound': 'sounds/colors/green.mp3'},
@@ -11,7 +18,27 @@ class ColorsScreen extends StatelessWidget {
     {'name': 'Purple', 'code': Colors.purple.value.toString(), 'sound': 'sounds/colors/purple.mp3'},
   ];
 
-  ColorsScreen({super.key});
+  late AudioPlayer _audioPlayer; // AudioPlayer to play color sounds
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer(); // Initialize the audio player
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose(); // Dispose the audio player when not needed
+    super.dispose();
+  }
+
+  void _playSound(String soundPath) async {
+    try {
+      await _audioPlayer.play(AssetSource(soundPath));
+    } catch (e) {
+      print("Error playing sound: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +63,8 @@ class ColorsScreen extends StatelessWidget {
 
             return GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ColorDetailScreen(
-                      colorName: colorName,
-                      soundPath: soundPath,
-                      colorCode: colorCode,
-                    ),
-                  ),
-                );
+                // Play the sound when the color card is tapped
+                _playSound(soundPath);
               },
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -53,15 +72,30 @@ class ColorsScreen extends StatelessWidget {
                 ),
                 elevation: 4,
                 color: colorCode,
-                child: Center(
-                  child: Text(
-                    colorName,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                child: Stack(
+                  children: [
+                    // Color name in the center of the card
+                    Center(
+                      child: Text(
+                        colorName,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
+                    // Speaker icon at the bottom-right corner
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: Icon(
+                        Icons.volume_up,
+                        size: 32,
+                        color: Colors.white.withOpacity(0.8),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             );
@@ -69,70 +103,5 @@ class ColorsScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class ColorDetailScreen extends StatelessWidget {
-  final String colorName;
-  final String soundPath;
-  final Color colorCode;
-
-  const ColorDetailScreen({
-    super.key,
-    required this.colorName,
-    required this.soundPath,
-    required this.colorCode,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Color Details'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 200,
-                height: 200,
-                color: colorCode,
-                child: Center(
-                  child: Text(
-                    colorName,
-                    style: const TextStyle(
-                      fontSize: 36,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 40),
-              IconButton(
-                icon: const Icon(Icons.volume_up, size: 48),
-                onPressed: () {
-                  _playSound(soundPath);
-                },
-                color: Colors.blueAccent,
-                tooltip: 'Play Sound',
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _playSound(String soundPath) async {
-    final audioPlayer = AudioPlayer();
-    try {
-      await audioPlayer.play(AssetSource(soundPath));
-    } catch (e) {
-      print("Error playing sound: $e");
-    }
   }
 }
