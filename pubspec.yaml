@@ -60,6 +60,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/entertainment/
     - assets/lang/
     - assets/sounds/letters/
     - assets/sounds/digits/

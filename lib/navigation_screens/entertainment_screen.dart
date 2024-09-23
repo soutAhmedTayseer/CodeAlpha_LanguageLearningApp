@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:url_launcher/url_launcher.dart'; // Import url_launcher package
-import 'package:url_launcher/url_launcher_string.dart'; // For handling URLs as strings
 
 class EntertainmentScreen extends StatelessWidget {
   const EntertainmentScreen({super.key});
@@ -24,52 +23,52 @@ class EntertainmentScreen extends StatelessWidget {
             buildCarousel([
               {
                 'title': 'The Shawshank Redemption',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/1.jpg',
                 'link': 'https://www.imdb.com/title/tt0111161/'
               },
               {
                 'title': 'The Godfather',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/2.jpg',
                 'link': 'https://www.imdb.com/title/tt0068646/'
               },
               {
                 'title': 'The Dark Knight',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/3.jpg',
                 'link': 'https://www.imdb.com/title/tt0468569/'
               },
               {
                 'title': 'See You On Venus',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/4.jpg',
                 'link': 'https://www.imdb.com/title/tt14960612/'
               },
               {
                 'title': 'Forrest Gump',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/5.jpg',
                 'link': 'https://www.imdb.com/title/tt0109830/'
               },
               {
                 'title': 'Inception',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/6.jpg',
                 'link': 'https://www.imdb.com/title/tt1375666/'
               },
               {
                 'title': 'The Matrix',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/7.jpg',
                 'link': 'https://www.imdb.com/title/tt0133093/'
               },
               {
                 'title': 'Fight Club',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/8.jpg',
                 'link': 'https://www.imdb.com/title/tt0137523/'
               },
               {
                 'title': 'The Lord of the Rings: The Return of the King',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/9.jpg',
                 'link': 'https://www.imdb.com/title/tt0167260/'
               },
               {
                 'title': 'La La Land',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/10.jpg',
                 'link': 'https://www.imdb.com/title/tt3783958/'
               },
             ]),
@@ -78,215 +77,243 @@ class EntertainmentScreen extends StatelessWidget {
             buildCarousel([
               {
                 'title': 'Friends',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/11.jpg',
                 'link': 'https://www.imdb.com/title/tt0108778/'
               },
               {
                 'title': 'Breaking Bad',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/12.jpg',
                 'link': 'https://www.imdb.com/title/tt0903747/'
               },
               {
                 'title': 'Game of Thrones',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/13.jpg',
                 'link': 'https://www.imdb.com/title/tt0944947/'
               },
               {
                 'title': 'The Crown',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/14.jpg',
                 'link': 'https://www.imdb.com/title/tt4786824/'
               },
               {
                 'title': 'Stranger Things',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/15.jpg',
                 'link': 'https://www.imdb.com/title/tt4574334/'
               },
               {
                 'title': 'Sherlock',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/14.jpg',
                 'link': 'https://www.imdb.com/title/tt1475582/'
               },
               {
                 'title': 'The Office',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/17.jpg',
                 'link': 'https://www.imdb.com/title/tt0386676/'
               },
               {
                 'title': 'Narcos',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/18.jpg',
                 'link': 'https://www.imdb.com/title/tt2707408/'
               },
               {
                 'title': 'The Witcher',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/19.jpg',
                 'link': 'https://www.imdb.com/title/tt5180504/'
               },
               {
                 'title': 'Westworld',
-                'image': 'assets/images/background.jpeg',
+                'image': 'assets/images/entertainment/20.jpg',
                 'link': 'https://www.imdb.com/title/tt0475784/'
               },
             ]),
             const SizedBox(height: 20),
-            buildSectionTitle(context, 'Book Recommendations'),
+            buildSectionTitle(context, 'Novel Recommendations'),
             buildCarousel([
               {
                 'title': 'To Kill a Mockingbird',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/2657.To_Kill_a_Mockingbird'
+                'image': 'assets/images/entertainment/21.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/_/PGR2AwAAQBAJ?hl=ar&gbpv=0'
               },
               {
                 'title': '1984 by George Orwell',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/5470.1984'
+                'image': 'assets/images/entertainment/22.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/1984/kotPYEqx7kMC?hl=ar&gbpv=0'
               },
               {
                 'title': 'Pride and Prejudice',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/1885.Pride_and_Prejudice'
+                'image': 'assets/images/entertainment/23.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/Pride_and_Prejudice/EvqJCGeqKhsC?hl=ar&gbpv=0&bsq=Pride%20and%20Prejudice'
               },
               {
                 'title': 'The Great Gatsby',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/4671.The_Great_Gatsby'
+                'image': 'assets/images/entertainment/24.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/The_Great_Gatsby/iWA-DwAAQBAJ?hl=ar&gbpv=0'
               },
               {
                 'title': 'Moby-Dick',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/153747.Moby_Dick'
+                'image': 'assets/images/entertainment/25.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/Moby_Dick/cyrMu-gkGQQC?hl=ar&gbpv=0'
               },
               {
                 'title': 'War and Peace',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/656.War_and_Peace'
+                'image': 'assets/images/entertainment/26.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/War_and_Peace/jVMEAAAAYAAJ?hl=ar&gbpv=0'
               },
               {
                 'title': 'The Catcher in the Rye',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/5107.The_Catcher_in_the_Rye'
+                'image': 'assets/images/entertainment/27.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/Salinger_s_The_Catcher_in_the_Rye/htdSEMt1ZKAC?hl=ar&gbpv=0'
               },
               {
                 'title': 'Brave New World',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/5129.Brave_New_World'
+                'image': 'assets/images/entertainment/28.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/Brave_New_World/ZiLvDwAAQBAJ?hl=ar&gbpv=0'
               },
               {
                 'title': 'The Alchemist',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/865.The_Alchemist'
+                'image': 'assets/images/entertainment/29.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/The_Alchemist/6uHQg0YPcScC?hl=ar&gbpv=0'
               },
               {
                 'title': 'The Hobbit',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://www.goodreads.com/book/show/5907.The_Hobbit'
+                'image': 'assets/images/entertainment/30.jpg',
+                'link':
+                    'https://www.google.com.eg/books/edition/The_Hobbit/pD6arNyKyi8C?hl=ar'
               },
             ]),
             const SizedBox(height: 20),
             buildSectionTitle(context, 'Music Recommendations'),
             buildCarousel([
               {
-                'title': 'Shape of You - Ed Sheeran',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/JGwWNGJdvx8'
+                'title': 'Die With A Smile',
+                'image': 'assets/images/entertainment/31.jpg',
+                'link':
+                    'https://open.spotify.com/track/2plbrEY59IikOBgBGLjaoe?si=24b4f138702d4a21'
               },
               {
-                'title': 'Someone Like You - Adele',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/hLQl3WQQoQ0'
+                'title': 'Born To Die',
+                'image': 'assets/images/entertainment/32.jpg',
+                'link':
+                    'https://open.spotify.com/track/4Ouhoi2lAhrLJKFzUqEzwl?si=7f7adb0a9a24409e'
               },
               {
-                'title': 'Blinding Lights - The Weeknd',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/fHI8X4OXluQ'
+                'title': 'Sweater Weather',
+                'image': 'assets/images/entertainment/33.jpg',
+                'link':
+                    'https://open.spotify.com/track/2QjOHCTQ1Jl3zawyYOpxh6?si=396e0c1783b94247'
               },
               {
-                'title': 'Bad Guy - Billie Eilish',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/DyDfgMOUjCI'
+                'title': 'Bad Guy',
+                'image': 'assets/images/entertainment/34.jpg',
+                'link':
+                    'https://open.spotify.com/track/2Fxmhks0bxGSBdJ92vM42m?si=04ff2d6bc43b40f5'
               },
               {
-                'title': 'Uptown Funk - Mark Ronson ft. Bruno Mars',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/OPf0YbXqDm0'
+                'title': 'Swim',
+                'image': 'assets/images/entertainment/35.jpg',
+                'link':
+                    'https://open.spotify.com/track/3M0lSi5WW79CXQamgSBIjx?si=38cb1daec0a04f06'
               },
               {
-                'title': 'Perfect - Ed Sheeran',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/2Vv-BfVoq4g'
+                'title': '505',
+                'image': 'assets/images/entertainment/36.jpg',
+                'link': 'https://open.spotify.com/track/0BxE4FqsDD1Ot4YuBXwAPp?si=7ba19cbb996f4dec'
               },
               {
-                'title': 'Rolling in the Deep - Adele',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/rYEDA3JcQqw'
+                'title': 'Skyfall',
+                'image': 'assets/images/entertainment/37.jpg',
+                'link': 'https://open.spotify.com/track/6VObnIkLVruX4UVyxWhlqm?si=805d4a95e77f4492'
               },
               {
-                'title': 'Let Her Go - Passenger',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/RBumgq5yVrA'
+                'title': 'Let Her Go',
+                'image': 'assets/images/entertainment/38.jpg',
+                'link': 'https://open.spotify.com/track/5rEvuW4YhwobKwGL1HPrXA?si=0ee115bcab244cb1'
               },
               {
-                'title': 'Havana - Camila Cabello',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/BQ0mxQXmLsk'
+                'title': 'Blinding Lights',
+                'image': 'assets/images/entertainment/39.jpg',
+                'link':
+                    'https://open.spotify.com/track/0VjIjW4GlUZAMYd2vXMi3b?si=c93eb39b623f4d72'
               },
               {
-                'title': 'Love Me Like You Do - Ellie Goulding',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/AJtDXIazrMo'
+                'title': 'Sunflower',
+                'image': 'assets/images/entertainment/40.jpg',
+                'link':
+                    'https://open.spotify.com/track/0RiRZpuVRbi7oqRdSMwhQY?si=9189fc10254d4edd'
               },
             ]),
             const SizedBox(height: 20),
             buildSectionTitle(context, 'Learn English YouTube Videos'),
             buildCarousel([
               {
-                'title': 'Learn English in 30 Minutes - ALL the English Basics You Need',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/d0rWLpP6AkY'
+                'title':
+                    'Learn English in 30 Minutes - ALL the English Basics You Need',
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=Learn+English+in+30+Minutes+-+ALL+the+English+Basics+You+Need'
               },
               {
                 'title': 'Learn English Through Story - The Stranger',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/27m1L6uIuVs'
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=learn+english+through+story+the+stranger'
               },
               {
                 'title': 'BBC Learning English - Tim’s Pronunciation Workshop',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/DQLhdPRsPW8'
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=BBC+Learning+English+-+Tim%E2%80%99s+Pronunciation+Workshop'
               },
               {
                 'title': 'Learn English with TV Series',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/kRfvp5cS0z0'
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=learn+english+with+tv+series'
               },
               {
                 'title': 'English Conversation Practice',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/5WzD5fyCA5M'
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=English+Conversation+Practice'
               },
               {
                 'title': 'English Listening Practice',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/HD4eJj6tT8k'
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=English+Listening+Practice'
               },
               {
                 'title': 'Speak English Like a Native',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/0Tzj8yvFKeo'
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=Speak+English+Like+a+Native'
               },
               {
                 'title': 'English Pronunciation Tutorial',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/oP0kRv5e-0M'
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=English+Pronunciation+Tutorial'
               },
               {
                 'title': 'Learn English Vocabulary',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/P8GkjW08tRA'
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=Learn+English+Vocabulary'
               },
               {
                 'title': 'English Grammar for Beginners',
-                'image': 'assets/images/background.jpeg',
-                'link': 'https://youtu.be/JvVkmzOnXdg'
+                'image': 'assets/images/entertainment/y.jpg',
+                'link':
+                    'https://www.youtube.com/results?search_query=English+Grammar+for+Beginners'
               },
             ]),
           ],
@@ -313,7 +340,7 @@ class EntertainmentScreen extends StatelessWidget {
   Widget buildCarousel(List<Map<String, String>> items) {
     return CarouselSlider.builder(
       options: CarouselOptions(
-        height: 200,
+        height: 500,
         enlargeCenterPage: true,
         autoPlay: true,
         aspectRatio: 16 / 9,
