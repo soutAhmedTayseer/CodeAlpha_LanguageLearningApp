@@ -234,13 +234,13 @@ class _ForumScreenState extends State<CommunityScreen> {
       ),
       body: Stack(
         children: [
-          Positioned.fill(
+          const Positioned.fill(
             child: Opacity(
               opacity: 1, // Set opacity to make the background less prominent
-              child: Image.asset(
-                'assets/images/backkground.jpeg', // Add your background image path
-                fit: BoxFit.cover, // Ensure the image covers the whole screen
-              ),
+              // child: Image.asset(
+              //   'assets/images/backkground.jpeg', // Add your background image path
+              //   fit: BoxFit.cover, // Ensure the image covers the whole screen
+              // ),
             ),
           ),
           ListView.builder(

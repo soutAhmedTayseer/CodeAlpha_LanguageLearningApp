@@ -45,9 +45,9 @@ class _CategoriesScreenState
       ),
       body: Stack(
         children: [
-          const BackgroundImage(
-            imagePath: 'assets/images/backkground.jpeg',
-          ),
+          // const BackgroundImage(
+          //   imagePath: 'assets/images/backkground.jpeg',
+          // ),
           Column(
             children: [
               // Search bar at the top

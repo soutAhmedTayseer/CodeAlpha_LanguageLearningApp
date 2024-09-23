@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_projects/components/api_for_movies.dart';
 import 'package:flutter_projects/management/alphabet_cubit.dart';
 import 'management/cubit.dart';
 import 'management/states.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales, // Use EasyLocalization's supported locales
           localizationsDelegates: context.localizationDelegates, // Load localizations
           theme: appCubit.currentTheme, // Set theme from AppCubit
-          home: const SplashScreen(), // Start with SplashScreen
+          home:  const SplashScreen(), // Start with SplashScreen
         );
       },
     );

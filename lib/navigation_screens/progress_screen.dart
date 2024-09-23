@@ -67,12 +67,15 @@ class _ProgressState extends State<Progress> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildSectionTitle('In Progress'),
+                const SizedBox(height: 10),
                 buildProgressList(progressLessons, 'No lessons in progress yet.'),
                 const SizedBox(height: 20),
                 buildSectionTitle('Achievements'),
+                const SizedBox(height: 10),
                 buildAchievementList(achievementLessons, 'No completed lessons yet.'),
                 const SizedBox(height: 20),
                 buildSectionTitle('Completed Quizzes'),
+                const SizedBox(height: 10),
                 buildCompletedQuizzesList(completedQuizzes, 'No completed quizzes yet.'),
                 const SizedBox(height: 20),
                 // Align reset button to the right and make it red
@@ -97,20 +100,14 @@ class _ProgressState extends State<Progress> {
   }
 
   Widget buildSectionTitle(String title) {
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.only(bottom: 10),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Text(
+    return
+        Text(
           title,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
-            fontSize: 24,
+            fontSize: 20,
           ),
-        ).tr(),
-      ),
-    );
+        ).tr();
   }
 
   Widget buildProgressList(List<String> lessons, String emptyMessage) {

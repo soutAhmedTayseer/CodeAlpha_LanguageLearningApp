@@ -168,15 +168,15 @@ class _LessonsState extends State<Lessons> {
       body: Stack(
         children: [
           // Background Image
-          Positioned.fill(
-            child: Opacity(
-              opacity: 1,
-              child: Image.asset(
-                'assets/images/backkground.jpeg',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          // Positioned.fill(
+          //   child: Opacity(
+          //     opacity: 1,
+          //     child: Image.asset(
+          //       'assets/images/backkground.jpeg',
+          //       fit: BoxFit.cover,
+          //     ),
+          //   ),
+          // ),
           // Main content
           SingleChildScrollView(
             child: Padding(
