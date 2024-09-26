@@ -55,170 +55,167 @@ List<Question> getAnimalQuestions() {
   ];
 }
 
-
 List<Question> getColorQuestions() {
   return [
     Question(
       soundPath: 'sounds/colors/red.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/colors/red.jpg', 'assets/images/colors/blue.jpg'],
+      options: ['assets/images/gamified_xp/red.jpg', 'assets/images/gamified_xp/blue.jpg'],
     ),
     Question(
       soundPath: 'sounds/colors/blue.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/colors/green.jpg', 'assets/images/colors/blue.jpg'],
+      options: ['assets/images/gamified_xp/green.jpg', 'assets/images/gamified_xp/blue.jpg'],
     ),
     Question(
       soundPath: 'sounds/colors/green.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/colors/green.jpg', 'assets/images/colors/yellow.jpg'],
+      options: ['assets/images/gamified_xp/green.jpg', 'assets/images/gamified_xp/yellow.jpg'],
     ),
     Question(
       soundPath: 'sounds/colors/yellow.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/colors/orange.jpg', 'assets/images/colors/yellow.jpg'],
+      options: ['assets/images/gamified_xp/orange.jpg', 'assets/images/gamified_xp/yellow.jpg'],
     ),
     Question(
       soundPath: 'sounds/colors/orange.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/colors/orange.jpg', 'assets/images/colors/purple.jpg'],
+      options: ['assets/images/gamified_xp/orange.jpg', 'assets/images/gamified_xp/purple.jpg'],
     ),
     Question(
       soundPath: 'sounds/colors/purple.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/colors/brown.jpg', 'assets/images/colors/purple.jpg'],
+      options: ['assets/images/gamified_xp/brown.jpg', 'assets/images/gamified_xp/purple.jpg'],
     ),
     Question(
       soundPath: 'sounds/colors/black.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/colors/black.jpg', 'assets/images/colors/white.jpg'],
+      options: ['assets/images/gamified_xp/black.jpg', 'assets/images/gamified_xp/white.jpg'],
     ),
     Question(
       soundPath: 'sounds/colors/white.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/colors/gray.jpg', 'assets/images/colors/white.jpg'],
+      options: ['assets/images/gamified_xp/gray.jpg', 'assets/images/gamified_xp/white.jpg'],
     ),
     Question(
       soundPath: 'sounds/colors/brown.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/colors/brown.jpg', 'assets/images/colors/black.jpg'],
+      options: ['assets/images/gamified_xp/brown.jpg', 'assets/images/gamified_xp/black.jpg'],
     ),
     Question(
       soundPath: 'sounds/colors/gray.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/colors/gray.jpg', 'assets/images/colors/green.jpg'],
+      options: ['assets/images/gamified_xp/gray.jpg', 'assets/images/gamified_xp/green.jpg'],
     ),
   ];
 }
-
 
 List<Question> getNumberQuestions() {
   return [
     Question(
       soundPath: 'sounds/numbers/one.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/numbers/one.jpg', 'assets/images/numbers/two.jpg'],
+      options: ['assets/images/gamified_xp/one.jpg', 'assets/images/gamified_xp/two.jpg'],
     ),
     Question(
       soundPath: 'sounds/numbers/two.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/numbers/three.jpg', 'assets/images/numbers/two.jpg'],
+      options: ['assets/images/gamified_xp/three.jpg', 'assets/images/gamified_xp/two.jpg'],
     ),
     Question(
       soundPath: 'sounds/numbers/three.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/numbers/three.jpg', 'assets/images/numbers/four.jpg'],
+      options: ['assets/images/gamified_xp/three.jpg', 'assets/images/gamified_xp/four.jpg'],
     ),
     Question(
       soundPath: 'sounds/numbers/four.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/numbers/four.jpg', 'assets/images/numbers/five.jpg'],
+      options: ['assets/images/gamified_xp/four.jpg', 'assets/images/gamified_xp/five.jpg'],
     ),
     Question(
       soundPath: 'sounds/numbers/five.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/numbers/five.jpg', 'assets/images/numbers/six.jpg'],
+      options: ['assets/images/gamified_xp/five.jpg', 'assets/images/gamified_xp/six.jpg'],
     ),
     Question(
       soundPath: 'sounds/numbers/six.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/numbers/six.jpg', 'assets/images/numbers/seven.jpg'],
+      options: ['assets/images/gamified_xp/six.jpg', 'assets/images/gamified_xp/seven.jpg'],
     ),
     Question(
       soundPath: 'sounds/numbers/seven.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/numbers/seven.jpg', 'assets/images/numbers/eight.jpg'],
+      options: ['assets/images/gamified_xp/seven.jpg', 'assets/images/gamified_xp/eight.jpg'],
     ),
     Question(
       soundPath: 'sounds/numbers/eight.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/numbers/nine.jpg', 'assets/images/numbers/eight.jpg'],
+      options: ['assets/images/gamified_xp/nine.jpg', 'assets/images/gamified_xp/eight.jpg'],
     ),
     Question(
       soundPath: 'sounds/numbers/nine.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/numbers/nine.jpg', 'assets/images/numbers/ten.jpg'],
+      options: ['assets/images/gamified_xp/nine.jpg', 'assets/images/gamified_xp/ten.jpg'],
     ),
     Question(
       soundPath: 'sounds/numbers/ten.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/numbers/ten.jpg', 'assets/images/numbers/one.jpg'],
+      options: ['assets/images/gamified_xp/ten.jpg', 'assets/images/gamified_xp/one.jpg'],
     ),
   ];
 }
-
 
 List<Question> getShapeQuestions() {
   return [
     Question(
       soundPath: 'sounds/shapes/circle.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/shapes/circle.jpg', 'assets/images/shapes/square.jpg'],
+      options: ['assets/images/gamified_xp/circle.jpg', 'assets/images/gamified_xp/square.jpg'],
     ),
     Question(
       soundPath: 'sounds/shapes/square.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/shapes/triangle.jpg', 'assets/images/shapes/square.jpg'],
+      options: ['assets/images/gamified_xp/triangle.jpg', 'assets/images/gamified_xp/square.jpg'],
     ),
     Question(
       soundPath: 'sounds/shapes/triangle.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/shapes/triangle.jpg', 'assets/images/shapes/rectangle.jpg'],
+      options: ['assets/images/gamified_xp/triangle.jpg', 'assets/images/gamified_xp/rectangle.jpg'],
     ),
     Question(
       soundPath: 'sounds/shapes/rectangle.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/shapes/circle.jpg', 'assets/images/shapes/rectangle.jpg'],
+      options: ['assets/images/gamified_xp/circle.jpg', 'assets/images/gamified_xp/rectangle.jpg'],
     ),
     Question(
       soundPath: 'sounds/shapes/star.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/shapes/star.jpg', 'assets/images/shapes/oval.jpg'],
+      options: ['assets/images/gamified_xp/star.jpg', 'assets/images/gamified_xp/oval.jpg'],
     ),
     Question(
       soundPath: 'sounds/shapes/oval.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/shapes/hexagon.jpg', 'assets/images/shapes/oval.jpg'],
+      options: ['assets/images/gamified_xp/hexagon.jpg', 'assets/images/gamified_xp/oval.jpg'],
     ),
     Question(
       soundPath: 'sounds/shapes/hexagon.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/shapes/hexagon.jpg', 'assets/images/shapes/pentagon.jpg'],
+      options: ['assets/images/gamified_xp/hexagon.jpg', 'assets/images/gamified_xp/pentagon.jpg'],
     ),
     Question(
       soundPath: 'sounds/shapes/pentagon.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/shapes/pentagon.jpg', 'assets/images/shapes/square.jpg'],
+      options: ['assets/images/gamified_xp/pentagon.jpg', 'assets/images/gamified_xp/square.jpg'],
     ),
     Question(
       soundPath: 'sounds/shapes/heart.mp3',
       correctAnswerIndex: 0,
-      options: ['assets/images/shapes/heart.jpg', 'assets/images/shapes/diamond.jpg'],
+      options: ['assets/images/gamified_xp/heart.jpg', 'assets/images/gamified_xp/diamond.jpg'],
     ),
     Question(
       soundPath: 'sounds/shapes/diamond.mp3',
       correctAnswerIndex: 1,
-      options: ['assets/images/shapes/triangle.jpg', 'assets/images/shapes/diamond.jpg'],
+      options: ['assets/images/gamified_xp/triangle.jpg', 'assets/images/gamified_xp/diamond.jpg'],
     ),
   ];
 }

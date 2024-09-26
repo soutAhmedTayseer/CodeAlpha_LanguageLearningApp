@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_projects/screens/list_of_gimified_q_and_a.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CategorySelectionScreen extends StatelessWidget {
   const CategorySelectionScreen({super.key});
@@ -9,30 +10,45 @@ class CategorySelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Gamified Experience',style: TextStyle(fontSize: 18),)),
+        title: const Center(
+          child: Text(
+            'Gamified Experience',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CategoryButton(
-              categoryName: 'Animals',
-              questions: getAnimalQuestions(),
-            ),
-            CategoryButton(
-              categoryName: 'Colors',
-              questions: getColorQuestions(),
-            ),
-            CategoryButton(
-              categoryName: 'Numbers',
-              questions: getNumberQuestions(),
-            ),
-            CategoryButton(
-              categoryName: 'Shapes',
-              questions: getShapeQuestions(),
-            ),
-          ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CategoryButton(
+                categoryName: 'Animals',
+                questions: getAnimalQuestions(),
+                color: Colors.orangeAccent,
+                icon: Icons.pets,
+              ),
+              CategoryButton(
+                categoryName: 'Colors',
+                questions: getColorQuestions(),
+                color: Colors.pinkAccent,
+                icon: Icons.color_lens,
+              ),
+              CategoryButton(
+                categoryName: 'Numbers',
+                questions: getNumberQuestions(),
+                color: Colors.blueAccent,
+                icon: Icons.format_list_numbered,
+              ),
+              CategoryButton(
+                categoryName: 'Shapes',
+                questions: getShapeQuestions(),
+                color: Colors.greenAccent,
+                icon: Icons.category,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -42,33 +58,60 @@ class CategorySelectionScreen extends StatelessWidget {
 class CategoryButton extends StatelessWidget {
   final String categoryName;
   final List<Question> questions;
+  final Color color;
+  final IconData icon;
 
-  const CategoryButton({super.key, required this.categoryName, required this.questions});
+  const CategoryButton({
+    super.key,
+    required this.categoryName,
+    required this.questions,
+    required this.color,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => QuizScreen(questions: questions),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          minimumSize: const Size(250, 60),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          elevation: 5,
+        ),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => QuizScreen(
+                questions: questions,
+                categoryName: categoryName, // Pass category name to QuizScreen
               ),
-            );
-          },
-          child: Text('Start $categoryName Quiz'),
+            ),
+          );
+        },
+        icon: Icon(icon, size: 28, color: Colors.white),
+        label: Text(
+          'Start $categoryName Quiz',
+          style: const TextStyle(fontSize: 18,color: Colors.white),
         ),
       ),
     );
   }
 }
 
+
 class QuizScreen extends StatefulWidget {
   final List<Question> questions;
+  final String categoryName;
 
-  const QuizScreen({super.key, required this.questions});
+  const QuizScreen({
+    super.key,
+    required this.questions,
+    required this.categoryName,
+  });
 
   @override
   _QuizScreenState createState() => _QuizScreenState();
@@ -77,7 +120,22 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   int currentQuestionIndex = 0;
   int score = 0;
+  bool quizEnded = false;
   AudioPlayer audioPlayer = AudioPlayer();
+
+  List<Question> shuffledQuestions = [];
+  List<int> shuffledAnswerIndices = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Shuffle the questions once when the quiz starts
+    shuffledQuestions = widget.questions..shuffle();
+
+    // Shuffle the options for the first question
+    shuffleAnswerOptions(currentQuestionIndex);
+  }
 
   @override
   void dispose() {
@@ -90,84 +148,170 @@ class _QuizScreenState extends State<QuizScreen> {
     await audioPlayer.play(AssetSource(path));
   }
 
-  // When user selects an image
-  void selectAnswer(int selectedIndex) {
-    if (selectedIndex == widget.questions[currentQuestionIndex].correctAnswerIndex) {
-      score++;
-    }
+  // Shuffle answer options and update correct answer index
+  void shuffleAnswerOptions(int questionIndex) {
+    Question question = shuffledQuestions[questionIndex];
+    List<int> indices = List<int>.generate(question.options.length, (i) => i); // Generate index list
+    indices.shuffle(); // Shuffle indices
 
-    if (currentQuestionIndex < widget.questions.length - 1) {
-      setState(() {
-        currentQuestionIndex++;
-      });
-    } else {
-      // When all questions are answered, show the dialog
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Yeeeeah, you did it!'),
-          content: Text('Your score is $score out of ${widget.questions.length}.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop(); // Return to category selection
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
+    setState(() {
+      shuffledAnswerIndices = indices;
+    });
+  }
+
+  // Get the correct answer index in the shuffled list
+  int getCorrectAnswerIndex() {
+    int originalIndex = shuffledQuestions[currentQuestionIndex].correctAnswerIndex;
+    return shuffledAnswerIndices.indexOf(originalIndex);
+  }
+
+  // When user selects an answer
+  void selectAnswer(int selectedIndex) {
+    if (!quizEnded) {
+      if (selectedIndex == getCorrectAnswerIndex()) {
+        setState(() {
+          score++; // Increment the score
+        });
+      }
+
+      if (currentQuestionIndex < shuffledQuestions.length - 1) {
+        setState(() {
+          currentQuestionIndex++;
+          shuffleAnswerOptions(currentQuestionIndex); // Shuffle the next question's options
+        });
+      } else {
+        // Save achievement when the quiz ends
+        saveAchievement();
+
+        // Show the result dialog
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Great Job!'),
+            content: Text('You scored $score out of ${shuffledQuestions.length}.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    quizEnded = true;
+                  });
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    }
+  }
+
+  // Save the quiz name to completed quizzes in SharedPreferences
+  void saveAchievement() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> completedQuizzes =
+        prefs.getStringList('completed_quizzes') ?? [];
+
+    if (!completedQuizzes.contains(widget.categoryName)) {
+      completedQuizzes.add(widget.categoryName); // Add the quiz name
+      await prefs.setStringList('completed_quizzes', completedQuizzes);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    Question currentQuestion = shuffledQuestions[currentQuestionIndex];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Quiz'),
+        backgroundColor: Colors.cyan,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Question ${currentQuestionIndex + 1} of ${widget.questions.length}',
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Score: $score',
+              style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.cyan),
+            ),
+            const SizedBox(height: 40),
+
+            Text(
+              'Question ${currentQuestionIndex + 1} of ${shuffledQuestions.length}',
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(height: 20),
-              IconButton(
-                icon: const Icon(Icons.volume_up, size: 40),
+            ),
+            const SizedBox(height: 20),
+            const Center(child: Text('Select The Correct Image According To Sound Button',style: TextStyle(fontSize: 15),)),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Display the shuffled image options in a Card style
+                for (int i = 0; i < 2; i++)
+                  OptionCard(
+                    imagePath: currentQuestion.options[shuffledAnswerIndices[i]],
+                    onTap: () => selectAnswer(i),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 50),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.cyan),
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.tealAccent.withOpacity(0.2),
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.volume_up, size: 40, color: Colors.cyan),
                 onPressed: () {
-                  playSound(widget.questions[currentQuestionIndex].soundPath);
+                  playSound(currentQuestion.soundPath);
                 },
               ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // Display the two image options
-                  GestureDetector(
-                    onTap: () => selectAnswer(0),
-                    child: Image.asset(
-                      widget.questions[currentQuestionIndex].options[0],
-                      width: 150,
-                      height: 150,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => selectAnswer(1),
-                    child: Image.asset(
-                      widget.questions[currentQuestionIndex].options[1],
-                      width: 150,
-                      height: 150,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class OptionCard extends StatelessWidget {
+  final String imagePath;
+  final VoidCallback onTap;
+
+  const OptionCard({
+    super.key,
+    required this.imagePath,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        elevation: 8,
+        shadowColor: Colors.grey.withOpacity(0.3),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.asset(
+            imagePath,
+            width: 150,
+            height: 150,
+            fit: BoxFit.fill,
           ),
         ),
       ),
@@ -175,7 +319,6 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 }
 
-// Question class that holds the data
 class Question {
   final String soundPath;
   final List<String> options;
@@ -187,4 +330,3 @@ class Question {
     required this.correctAnswerIndex,
   });
 }
-
