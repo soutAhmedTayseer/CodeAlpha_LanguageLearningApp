@@ -63,141 +63,144 @@ class _CategoriesScreenState
       ),
       body: Stack(
         children: [
-          Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: threeCarousels.length,
-                  itemBuilder: (context, groupIndex) {
-                    // Define titles for each carousel
-                    String carouselTitle;
-                    switch (groupIndex) {
-                      case 0:
-                        carouselTitle = 'Beginner Quizzes';
-                        break;
-                      case 1:
-                        carouselTitle = 'Intermediate Quizzes';
-                        break;
-                      case 2:
-                        carouselTitle = 'Advanced Quizzes';
-                        break;
-                      default:
-                        carouselTitle = '';
-                    }
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: threeCarousels.length,
+                    itemBuilder: (context, groupIndex) {
+                      // Define titles for each carousel
+                      String carouselTitle;
+                      switch (groupIndex) {
+                        case 0:
+                          carouselTitle = 'Beginner Quizzes';
+                          break;
+                        case 1:
+                          carouselTitle = 'Intermediate Quizzes';
+                          break;
+                        case 2:
+                          carouselTitle = 'Advanced Quizzes';
+                          break;
+                        default:
+                          carouselTitle = '';
+                      }
 
-                    return Column(
-                      children: [
-                        // Header for each carousel
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                carouselTitle,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                      return Column(
+                        children: [
+                          // Header for each carousel
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(
+                                  carouselTitle,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          height: 300, // Limit the height of each carousel
-                          child: PageView.builder(
-                            controller: PageController(viewportFraction: 0.85),
-                            itemCount: threeCarousels[groupIndex]
-                                .length, // Set to the number of categories
-                            itemBuilder: (context, index) {
-                              final category =
-                              threeCarousels[groupIndex][index];
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            height: 300, // Limit the height of each carousel
+                            child: PageView.builder(
+                              controller: PageController(viewportFraction: 0.85),
+                              itemCount: threeCarousels[groupIndex]
+                                  .length, // Set to the number of categories
+                              itemBuilder: (context, index) {
+                                final category =
+                                threeCarousels[groupIndex][index];
 
-                              // Get the corresponding image for the category based on index
-                              final imageIndex =
-                                  groupIndex * 4 + index; // Calculate the index in categoryImages
-                              final imagePath = categoryImages[imageIndex];
+                                // Get the corresponding image for the category based on index
+                                final imageIndex =
+                                    groupIndex * 4 + index; // Calculate the index in categoryImages
+                                final imagePath = categoryImages[imageIndex];
 
-                              return GestureDetector(
-                                onTap: () {
-                                  // Navigate to QuizScreen when a card is tapped
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => QuizScreen(
-                                        categoryTitle: category['title'],
-                                        questions: category['questions'],
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: Container(
-                                    width:
-                                    150, // Set a fixed width for each card
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      image: DecorationImage(
-                                        image: AssetImage(imagePath),
-                                        fit: BoxFit.fill,
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.2),
-                                          spreadRadius: 2,
-                                          blurRadius: 5,
+                                return GestureDetector(
+                                  onTap: () {
+                                    // Navigate to QuizScreen when a card is tapped
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => QuizScreen(
+                                          categoryTitle: category['title'],
+                                          questions: category['questions'],
                                         ),
-                                      ],
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Container(
-                                        width: double.infinity,
-                                        padding: const EdgeInsets.all(8.0),
-                                        decoration: BoxDecoration(
-                                          color: Colors.black.withOpacity(0.6),
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(16),
-                                            bottomRight: Radius.circular(16),
+                                      ),
+                                    );
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: Container(
+                                      width:
+                                      150,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16),
+                                        image: DecorationImage(
+                                          image: AssetImage(imagePath),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(0.2),
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
                                           ),
-                                        ),
-                                        child: Text(
-                                          category['title'],
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            shadows: [
-                                              Shadow(
-                                                offset: Offset(2, 2),
-                                                blurRadius: 3.0,
-                                                color: Colors.black54,
-                                              ),
-                                            ],
+                                        ],
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Container(
+                                          width: double.infinity,
+                                          padding: const EdgeInsets.all(8.0),
+                                          decoration: BoxDecoration(
+                                            color: Colors.black.withOpacity(0.6),
+                                            borderRadius: const BorderRadius.only(
+                                              bottomLeft: Radius.circular(16),
+                                              bottomRight: Radius.circular(16),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            category['title'],
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              shadows: [
+                                                Shadow(
+                                                  offset: Offset(2, 2),
+                                                  blurRadius: 3.0,
+                                                  color: Colors.black54,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 16), // Spacing between carousels
-                      ],
-                    );
-                  },
+                          const SizedBox(height: 16), // Spacing between carousels
+                        ],
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

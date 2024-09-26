@@ -230,142 +230,136 @@ class _ForumScreenState extends State<CommunityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Community Forum',style: TextStyle(fontSize: 18),).tr(),
+        title: Center(child: const Text('Community Forum',style: TextStyle(fontSize: 18),).tr()),
       ),
-      body: Stack(
-        children: [
-          const Positioned.fill(
-            child: Opacity(
-              opacity: 1, // Set opacity to make the background less prominent
-              // child: Image.asset(
-              //   'assets/images/backkground.jpeg', // Add your background image path
-              //   fit: BoxFit.cover, // Ensure the image covers the whole screen
-              // ),
-            ),
-          ),
-          ListView.builder(
-            itemCount: _posts.length,
-            itemBuilder: (ctx, index) {
-              return GestureDetector(
-                onLongPress: () => _showDeleteConfirmationDialog(index),
-                child: Card(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ListTile(
-                          title: Text(
-                            _posts[index].title,
-                            style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight:
-                                    FontWeight.bold), // Increased title size
-                          ),
-                          subtitle: Text(
-                            _posts[index].content,
-                            style: const TextStyle(
-                                fontSize: 18), // Increased content size
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                IconButton(
-                                  icon: const Icon(Icons.thumb_up),
-                                  color: _posts[index].hasLiked
-                                      ? Colors.blue
-                                      : null,
-                                  onPressed: () => _likePost(index),
-                                ),
-                                Text('${_posts[index].likes}'),
-                                const SizedBox(width: 10),
-                                IconButton(
-                                  icon: const Icon(Icons.thumb_down),
-                                  color: _posts[index].hasDisliked
-                                      ? Colors.red
-                                      : null,
-                                  onPressed: () => _dislikePost(index),
-                                ),
-                                Text('${_posts[index].dislikes}'),
-                              ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Stack(
+          children: [
+            ListView.builder(
+              itemCount: _posts.length,
+              itemBuilder: (ctx, index) {
+                return GestureDetector(
+                  onLongPress: () => _showDeleteConfirmationDialog(index),
+                  child: Card(
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            title: Text(
+                              _posts[index].title,
+                              style: const TextStyle(
+                                  fontSize: 24,
+                                  fontWeight:
+                                      FontWeight.bold), // Increased title size
                             ),
-                            IconButton(
-                              icon: const Icon(Icons.comment),
-                              onPressed: () {
-                                String comment = '';
-                                showDialog(
-                                  context: context,
-                                  builder: (ctx) {
-                                    return AlertDialog(
-                                      title: const Text('Add Comment'),
-                                      content: TextField(
-                                        onChanged: (value) {
-                                          comment = value;
-                                        },
-                                        decoration: const InputDecoration(
-                                            labelText: 'Comment'),
-                                      ),
-                                      actions: [
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            if (comment.isNotEmpty) {
-                                              _addComment(index, comment);
-                                              Navigator.of(ctx).pop();
-                                            }
+                            subtitle: Text(
+                              _posts[index].content,
+                              style: const TextStyle(
+                                  fontSize: 18), // Increased content size
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(Icons.thumb_up),
+                                    color: _posts[index].hasLiked
+                                        ? Colors.blue
+                                        : null,
+                                    onPressed: () => _likePost(index),
+                                  ),
+                                  Text('${_posts[index].likes}'),
+                                  const SizedBox(width: 10),
+                                  IconButton(
+                                    icon: const Icon(Icons.thumb_down),
+                                    color: _posts[index].hasDisliked
+                                        ? Colors.red
+                                        : null,
+                                    onPressed: () => _dislikePost(index),
+                                  ),
+                                  Text('${_posts[index].dislikes}'),
+                                ],
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.comment),
+                                onPressed: () {
+                                  String comment = '';
+                                  showDialog(
+                                    context: context,
+                                    builder: (ctx) {
+                                      return AlertDialog(
+                                        title: const Text('Add Comment'),
+                                        content: TextField(
+                                          onChanged: (value) {
+                                            comment = value;
                                           },
-                                          child: const Text('Add'),
+                                          decoration: const InputDecoration(
+                                              labelText: 'Comment'),
                                         ),
+                                        actions: [
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              if (comment.isNotEmpty) {
+                                                _addComment(index, comment);
+                                                Navigator.of(ctx).pop();
+                                              }
+                                            },
+                                            child: const Text('Add'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                          const Divider(),
+                          const Text(
+                            'Comments:',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          const SizedBox(height: 5),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: _posts[index]
+                                .comments
+                                .map((comment) => Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(comment),
+                                        const Divider(), // Line separator between comments
                                       ],
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const Divider(),
-                        const Text(
-                          'Comments:',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                        const SizedBox(height: 5),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: _posts[index]
-                              .comments
-                              .map((comment) => Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(comment),
-                                      const Divider(), // Line separator between comments
-                                    ],
-                                  ))
-                              .toList(),
-                        ),
-                      ],
+                                    ))
+                                .toList(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-          ),
-          Positioned(
-            bottom: 16,
-            right: 16,
-            child: FloatingActionButton(
-              onPressed: _openAddPostDialog,
-              backgroundColor: Colors.cyan,
-              child: const Icon(Icons.add),
+                );
+              },
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 16,
+              right: 16,
+              child: FloatingActionButton(
+                onPressed: _openAddPostDialog,
+                backgroundColor: Colors.cyan,
+                child: const Icon(Icons.add),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -163,13 +163,13 @@ class _LessonsState extends State<Lessons> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Lessons',style: TextStyle(fontSize: 18),).tr(),
+        title: Center(child: const Text('Your Lessons',style: TextStyle(fontSize: 18),).tr()),
       ),
       body: Stack(
         children: [
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
