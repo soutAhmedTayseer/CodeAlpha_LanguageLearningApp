@@ -102,7 +102,7 @@ class EntertainmentScreen extends StatelessWidget {
               },
               {
                 'title': 'Sherlock',
-                'image': 'assets/images/entertainment/14.jpg',
+                'image': 'assets/images/entertainment/16.jpg',
                 'link': 'https://www.imdb.com/title/tt1475582/'
               },
               {

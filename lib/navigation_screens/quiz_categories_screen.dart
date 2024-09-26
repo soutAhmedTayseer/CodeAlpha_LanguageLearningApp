@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_projects/components/background_widget.dart';
 import 'package:flutter_projects/components/questions_and_answers.dart';
-import 'package:flutter_projects/components/searchbar_widget.dart';
 import 'package:flutter_projects/screens/quiz_screen.dart';
 
 class QuizCategoriesScreenCategoriesScreen extends StatefulWidget {
@@ -16,12 +14,28 @@ class _CategoriesScreenState
     extends State<QuizCategoriesScreenCategoriesScreen> {
   String searchQuery = ''; // To hold the search query
 
+  // List of image paths for the categories
+  final List<String> categoryImages = [
+    'assets/images/cards_background/alpha.jpg',
+    'assets/images/cards_background/digits.jpg',
+    'assets/images/cards_background/colors.jpg',
+    'assets/images/cards_background/voc.jpg',
+    'assets/images/cards_background/gre.jpg',
+    'assets/images/cards_background/sent.jpg',
+    'assets/images/cards_background/pre.jpg',
+    'assets/images/cards_background/conv.jpg',
+    'assets/images/cards_background/present.jpg',
+    'assets/images/cards_background/past.jpg',
+    'assets/images/cards_background/if.png',
+    'assets/images/cards_background/rep.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     // Filter categories based on the search query
     final filteredCategories = categories
         .where((category) =>
-            category['title'].toLowerCase().contains(searchQuery.toLowerCase()))
+        category['title'].toLowerCase().contains(searchQuery.toLowerCase()))
         .toList();
 
     // Create groups of four categories for each carousel
@@ -41,25 +55,16 @@ class _CategoriesScreenState
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Quizzes',style: TextStyle(fontSize: 18),).tr(),
+        title: Center(
+            child: const Text(
+              'Quizzes',
+              style: TextStyle(fontSize: 18),
+            ).tr()),
       ),
       body: Stack(
         children: [
-          // const BackgroundImage(
-          //   imagePath: 'assets/images/backkground.jpeg',
-          // ),
           Column(
             children: [
-              // Search bar at the top
-              CustomSearchBar(
-                onChanged: (value) {
-                  setState(() {
-                    searchQuery = value;
-                  });
-                },
-              ),
-
-              // Expanded to take available height
               Expanded(
                 child: ListView.builder(
                   itemCount: threeCarousels.length,
@@ -87,16 +92,13 @@ class _CategoriesScreenState
                           padding: const EdgeInsets.symmetric(horizontal: 6.0),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Card(
-                              elevation: 4,
-                              child: Container(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text(
-                                  carouselTitle,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                            child: Container(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                carouselTitle,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -106,14 +108,20 @@ class _CategoriesScreenState
                           height: 10,
                         ),
                         SizedBox(
-                          height: 220, // Limit the height of each carousel
+                          height: 300, // Limit the height of each carousel
                           child: PageView.builder(
                             controller: PageController(viewportFraction: 0.85),
                             itemCount: threeCarousels[groupIndex]
                                 .length, // Set to the number of categories
                             itemBuilder: (context, index) {
                               final category =
-                                  threeCarousels[groupIndex][index];
+                              threeCarousels[groupIndex][index];
+
+                              // Get the corresponding image for the category based on index
+                              final imageIndex =
+                                  groupIndex * 4 + index; // Calculate the index in categoryImages
+                              final imagePath = categoryImages[imageIndex];
+
                               return GestureDetector(
                                 onTap: () {
                                   // Navigate to QuizScreen when a card is tapped
@@ -132,12 +140,12 @@ class _CategoriesScreenState
                                       horizontal: 8.0),
                                   child: Container(
                                     width:
-                                        150, // Set a fixed width for each card
+                                    150, // Set a fixed width for each card
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(16),
                                       image: DecorationImage(
-                                        image: AssetImage(category['image']),
-                                        fit: BoxFit.cover,
+                                        image: AssetImage(imagePath),
+                                        fit: BoxFit.fill,
                                       ),
                                       boxShadow: [
                                         BoxShadow(

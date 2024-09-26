@@ -61,113 +61,115 @@ class _QuizScreenState extends State<QuizScreen> {
       appBar: AppBar(
         title: Text(widget.categoryTitle).tr(),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Status Card at the Top Right
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Card(
-                    elevation: 4,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        'Question ${currentQuestionIndex + 1} of ${shuffledQuestions.length}',
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Status Card at the Top Right
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Card(
+                      elevation: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          'Question ${currentQuestionIndex + 1} of ${shuffledQuestions.length}',
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              // Question Card
-              Card(
-                elevation: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Center(
-                    child: Text(
-                      currentQuestion,
-                      style: const TextStyle(fontSize: 20),
-                      textAlign: TextAlign.center,
+                  ],
+                ),
+                const SizedBox(height: 24),
+                // Question Card
+                Card(
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: Center(
+                      child: Text(
+                        currentQuestion,
+                        style: const TextStyle(fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 24),
-              // Options
-              Column(
-                children: currentOptions.map((option) {
-                  return Card(
-                    elevation: 4,
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: ListTile(
-                      title: Text(option!),
-                      leading: Radio<String?>(
-                        value: option,
-                        groupValue: selectedAnswers[currentQuestionIndex],
-                        onChanged: (value) {
+                const SizedBox(height: 24),
+                // Options
+                Column(
+                  children: currentOptions.map((option) {
+                    return Card(
+                      elevation: 4,
+                      margin: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: ListTile(
+                        title: Text(option!),
+                        leading: Radio<String?>(
+                          value: option,
+                          groupValue: selectedAnswers[currentQuestionIndex],
+                          onChanged: (value) {
+                            setState(() {
+                              selectedAnswers[currentQuestionIndex] = value;
+                            });
+                          },
+                          activeColor: Colors.green,
+                        ),
+                        onTap: () {
                           setState(() {
-                            selectedAnswers[currentQuestionIndex] = value;
+                            selectedAnswers[currentQuestionIndex] = option;
                           });
                         },
-                        activeColor: Colors.green,
                       ),
-                      onTap: () {
-                        setState(() {
-                          selectedAnswers[currentQuestionIndex] = option;
-                        });
-                      },
-                    ),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 24),
-              // Navigation Buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  if (currentQuestionIndex > 0)
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          currentQuestionIndex--;
-                          _setCurrentQuestion();
-                        });
-                      },
-                      child: const Text('Previous Question'),
-                    ),
-                  // Conditional Submit Button
-                  if (currentQuestionIndex == shuffledQuestions.length - 1)
-                    ElevatedButton(
-                      onPressed: () {
-                        _showSubmitConfirmation();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Colors.green,
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 24),
+                // Navigation Buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    if (currentQuestionIndex > 0)
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            currentQuestionIndex--;
+                            _setCurrentQuestion();
+                          });
+                        },
+                        child: const Text('Previous Question'),
                       ),
-                      child: Text('Submit Quiz'.tr()),
-                    ),
-                  // Conditional Next Question Button
-                  if (currentQuestionIndex < shuffledQuestions.length - 1)
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          currentQuestionIndex++;
-                          _setCurrentQuestion();
-                        });
-                      },
-                      child: const Text('Next Question'),
-                    ),
-                ],
-              ),
-            ],
+                    // Conditional Submit Button
+                    if (currentQuestionIndex == shuffledQuestions.length - 1)
+                      ElevatedButton(
+                        onPressed: () {
+                          _showSubmitConfirmation();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.green,
+                        ),
+                        child: Text('Submit Quiz'.tr()),
+                      ),
+                    // Conditional Next Question Button
+                    if (currentQuestionIndex < shuffledQuestions.length - 1)
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            currentQuestionIndex++;
+                            _setCurrentQuestion();
+                          });
+                        },
+                        child: const Text('Next Question'),
+                      ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

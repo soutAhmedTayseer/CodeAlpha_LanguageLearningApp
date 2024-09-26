@@ -32,7 +32,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Alphabet & Phonics',
         description: 'Learn the English alphabet and basic sounds.',
-        image: 'assets/images/cards_background/11.jpeg',
+        image: 'assets/images/cards_background/alpha.jpg',
         screen: AlphabetScreen(), // Placeholder screen
         isLocked: false, // First lesson unlocked
         isCompleted: false,
@@ -40,7 +40,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Digits',
         description: 'Learn digits from 1 to 10',
-        image: 'assets/images/cards_background/11.jpeg',
+        image: 'assets/images/cards_background/digits.jpg',
         screen: DigitsScreen(), // Placeholder screen
         isLocked: true,
         isCompleted: false,
@@ -48,7 +48,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Colors',
         description: 'Know more about colors',
-        image: 'assets/images/cards_background/11.jpeg',
+        image: 'assets/images/cards_background/colors.jpg',
         screen: ColorsScreen(), // Placeholder screen
         isLocked: true,
         isCompleted: false,
@@ -56,7 +56,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Basic Vocabulary',
         description: 'Learn everyday words like colors, numbers, and more.',
-        image: 'assets/images/cards_background/11.jpeg',
+        image: 'assets/images/cards_background/voc.jpg',
         screen: BasicVocabularyScreen(), // Placeholder screen
         isLocked: true,
         isCompleted: false,
@@ -65,7 +65,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Basic Greetings',
         description: 'Common phrases like "Hello" and "How are you?".',
-        image: 'assets/images/cards_background/10.jpeg',
+        image: 'assets/images/cards_background/gre.jpg',
         screen: BasicGreetingsScreen(),
         isLocked: true,
         isCompleted: false,
@@ -73,7 +73,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Simple Sentences',
         description: 'Understanding simple sentence structures.',
-        image: 'assets/images/cards_background/10.jpeg',
+        image: 'assets/images/cards_background/sent.jpg',
         screen: SimpleSentencesScreen(),
         isLocked: true,
         isCompleted: false,
@@ -81,7 +81,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Pronouns & Prepositions',
         description: 'Learn how to use pronouns and prepositions properly.',
-        image: 'assets/images/cards_background/10.jpeg',
+        image: 'assets/images/cards_background/pre.jpg',
         screen: PronounsPrepositionsScreen(),
         isLocked: true,
         isCompleted: false,
@@ -89,7 +89,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Everyday Conversations',
         description: 'Practice dialogues for common situations.',
-        image: 'assets/images/cards_background/10.jpeg',
+        image: 'assets/images/cards_background/conv.jpg',
         screen: EverydayConversationsScreen(),
         isLocked: true,
         isCompleted: false,
@@ -97,7 +97,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Present Simple Tense',
         description: 'Forming sentences in the present tense.',
-        image: 'assets/images/cards_background/2.jpeg',
+        image: 'assets/images/cards_background/present.jpg',
         screen: PresentSimpleTenseScreen(),
         isLocked: true,
         isCompleted: false,
@@ -105,7 +105,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Past Simple Tense',
         description: 'Understanding and using the past simple tense correctly.',
-        image: 'assets/images/cards_background/2.jpeg',
+        image: 'assets/images/cards_background/past.jpg',
         screen: PastTenseScreen(),
         isLocked: true,
         isCompleted: false,
@@ -113,7 +113,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Conditionals',
         description: 'Learn conditional sentences (if/then).',
-        image: 'assets/images/cards_background/2.jpeg',
+        image: 'assets/images/cards_background/if.png',
         screen: ConditionalsScreen(),
         isLocked: true,
         isCompleted: false,
@@ -121,7 +121,7 @@ class _LessonsState extends State<Lessons> {
       LessonData(
         title: 'Reported Speech',
         description: 'How to report what others have said.',
-        image: 'assets/images/cards_background/2.jpeg',
+        image: 'assets/images/cards_background/rep.jpg',
         screen: ReportedSpeechScreen(),
         isLocked: true,
         isCompleted: false,
@@ -167,17 +167,6 @@ class _LessonsState extends State<Lessons> {
       ),
       body: Stack(
         children: [
-          // Background Image
-          // Positioned.fill(
-          //   child: Opacity(
-          //     opacity: 1,
-          //     child: Image.asset(
-          //       'assets/images/backkground.jpeg',
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          // ),
-          // Main content
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -319,9 +308,9 @@ class _LessonsState extends State<Lessons> {
                   ),
                   child: Image.asset(
                     lesson.image,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     width: double.infinity,
-                    height: 150,
+                    height: 250,
                   ),
                 ),
                 // Locked icon overlay
@@ -333,7 +322,7 @@ class _LessonsState extends State<Lessons> {
                         child: Icon(
                           Icons.lock,
                           color: Colors.white,
-                          size: 50,
+                          size: 70,
                         ),
                       ),
                     ),

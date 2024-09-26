@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_projects/management/cubit.dart';
 import 'package:flutter_projects/management/states.dart';
+import 'package:flutter_projects/screens/games_screen.dart';
 import '../components/drawer/about_screen.dart';
 import '../components/drawer/themes_screen.dart';
 import '../navigation_screens/community_screen.dart';
@@ -62,12 +63,13 @@ class _HomeLayoutState extends State<HomeLayout> {
                 // Use IndexedStack to keep the state of the screens
                 IndexedStack(
                   index: appCubit.currentIndex,
-                  children: [
-                    const Lessons(),
-                    const QuizCategoriesScreenCategoriesScreen(),
+                  children: const [
+                    Lessons(),
+                    QuizCategoriesScreenCategoriesScreen(),
                     EntertainmentScreen(),
-                    const Progress(),
-                    const CommunityScreen(),
+                    GamesScreen(),
+                    Progress(),
+                    CommunityScreen(),
                   ],
                 ),
               ],
@@ -130,6 +132,10 @@ class _HomeLayoutState extends State<HomeLayout> {
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.movie),
                   label: tr('Entertainment'), // Use `tr()` for translation
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.games),
+                  label: tr('Games'), // Use `tr()` for translation
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.bar_chart),
