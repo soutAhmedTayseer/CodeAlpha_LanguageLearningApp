@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_projects/management/cubit.dart';
 import 'package:flutter_projects/management/states.dart';
-import 'package:flutter_projects/screens/games_screen.dart';
+import 'package:flutter_projects/navigation_screens/games_screen.dart';
 import '../components/drawer/about_screen.dart';
 import '../components/drawer/themes_screen.dart';
 import '../navigation_screens/community_screen.dart';
@@ -67,7 +67,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                     Lessons(),
                     QuizCategoriesScreenCategoriesScreen(),
                     EntertainmentScreen(),
-                    GamesScreen(),
+                    CategorySelectionScreen(),
                     Progress(),
                     CommunityScreen(),
                   ],

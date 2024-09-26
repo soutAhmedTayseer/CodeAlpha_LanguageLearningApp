@@ -59,10 +59,11 @@ flutter:
   generate: true  # Enable code generation for localization files
 
   assets:
+    - assets/lang/
     - assets/images/
     - assets/images/entertainment/
-    - assets/lang/
+    - assets/images/gamified_xp/
+    - assets/images/cards_background/
     - assets/sounds/letters/
     - assets/sounds/digits/
     - assets/sounds/colors/
-    - assets/images/cards_background/

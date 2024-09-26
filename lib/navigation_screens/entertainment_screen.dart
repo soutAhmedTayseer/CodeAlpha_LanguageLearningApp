@@ -373,7 +373,7 @@ class EntertainmentScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
               imagePath,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
               height: double.infinity, // Make image fill the container
               width: double.infinity,
             ),
