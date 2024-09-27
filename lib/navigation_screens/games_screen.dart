@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_projects/screens/list_of_gimified_q_and_a.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CategorySelectionScreen extends StatelessWidget {
   const CategorySelectionScreen({super.key});
@@ -10,11 +11,11 @@ class CategorySelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
+        title:  Center(
+          child: const Text(
             'Gamified Experience',
             style: TextStyle(fontSize: 18),
-          ),
+          ).tr(),
         ),
       ),
       body: Center(
@@ -76,7 +77,7 @@ class CategoryButton extends StatelessWidget {
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
-          minimumSize: const Size(250, 60),
+          minimumSize: Size(MediaQuery.of(context).size.width * 0.7, 60), // Responsive width
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
@@ -94,14 +95,13 @@ class CategoryButton extends StatelessWidget {
         },
         icon: Icon(icon, size: 28, color: Colors.white),
         label: Text(
-          'Start $categoryName Quiz',
-          style: const TextStyle(fontSize: 18,color: Colors.white),
-        ),
+          'Start $categoryName Game',
+          style: const TextStyle(fontSize: 18, color: Colors.white),
+        ).tr(),
       ),
     );
   }
 }
-
 
 class QuizScreen extends StatefulWidget {
   final List<Question> questions;
@@ -187,8 +187,8 @@ class _QuizScreenState extends State<QuizScreen> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Great Job!'),
-            content: Text('You scored $score out of ${shuffledQuestions.length}.'),
+            title: const Text('Great Job!').tr(),
+            content: Text('You scored $score out of ${shuffledQuestions.length}.').tr(),
             actions: [
               TextButton(
                 onPressed: () {
@@ -197,7 +197,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   });
                   Navigator.of(context).pop(); // Close the dialog
                 },
-                child: const Text('OK'),
+                child: const Text('OK').tr(),
               ),
             ],
           ),
@@ -224,7 +224,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Quiz'),
+        title: const Text('Quiz').tr(),
         backgroundColor: Colors.cyan,
       ),
       body: Padding(
@@ -233,7 +233,7 @@ class _QuizScreenState extends State<QuizScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Score: $score',
+              'Score: $score'.tr(),
               style: const TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
@@ -249,7 +249,11 @@ class _QuizScreenState extends State<QuizScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            const Center(child: Text('Select The Correct Image According To Sound Button',style: TextStyle(fontSize: 15),)),
+             Center(
+                child: const Text(
+                  'Select The Correct Image According To Sound Button',
+                  style: TextStyle(fontSize: 15),
+                ).tr()),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -282,8 +286,6 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 }
-
-
 
 class OptionCard extends StatelessWidget {
   final String imagePath;

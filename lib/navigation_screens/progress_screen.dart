@@ -57,7 +57,12 @@ class _ProgressState extends State<Progress> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: const Text('Progress & Achievements',style: TextStyle(fontSize: 18),).tr()),
+        title: Center(
+          child: const Text(
+            'Progress & Achievements',
+            style: TextStyle(fontSize: 18),
+          ).tr(),
+        ),
       ),
       body: Stack(
         children: [
@@ -66,17 +71,17 @@ class _ProgressState extends State<Progress> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                buildSectionTitle('In Progress'),
+                Center(child: buildSectionTitle('In Progress')),
                 const SizedBox(height: 10),
-                buildProgressList(progressLessons, 'No lessons in progress yet.'),
+                Center(child: buildProgressList(progressLessons, 'No lessons in progress yet.')),
                 const SizedBox(height: 20),
-                buildSectionTitle('Achievements'),
+                Center(child: buildSectionTitle('Achievements')),
                 const SizedBox(height: 10),
-                buildAchievementList(achievementLessons, 'No completed lessons yet.'),
+                Center(child: buildAchievementList(achievementLessons, 'No completed lessons yet.')),
                 const SizedBox(height: 20),
-                buildSectionTitle('Completed Quizzes'),
+                Center(child: buildSectionTitle('Completed Quizzes')),
                 const SizedBox(height: 10),
-                buildCompletedQuizzesList(completedQuizzes, 'No completed quizzes yet.'),
+                Center(child: buildCompletedQuizzesList(completedQuizzes, 'No completed quizzes yet.')),
                 const SizedBox(height: 20),
                 // Align reset button to the right and make it red
                 Row(
@@ -87,7 +92,10 @@ class _ProgressState extends State<Progress> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red, // Set background color to red
                       ),
-                      child: const Text('Reset Quizzes',style: TextStyle(color: Colors.white),).tr(),
+                      child: const Text(
+                        'Reset Quizzes',
+                        style: TextStyle(color: Colors.white),
+                      ).tr(),
                     ),
                   ],
                 ),
@@ -100,14 +108,13 @@ class _ProgressState extends State<Progress> {
   }
 
   Widget buildSectionTitle(String title) {
-    return
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ).tr();
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+        fontWeight: FontWeight.bold,
+        fontSize: MediaQuery.of(context).size.width * 0.05,
+      ),
+    ).tr();
   }
 
   Widget buildProgressList(List<String> lessons, String emptyMessage) {

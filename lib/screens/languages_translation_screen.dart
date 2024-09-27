@@ -12,13 +12,17 @@ class LanguagesTranslationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen dimensions using MediaQuery for responsiveness
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return BlocBuilder<AppCubit, AppStates>(
       builder: (context, state) {
         final appCubit = AppCubit.get(context);
 
         return Scaffold(
           body: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(screenWidth * 0.04), // Responsive padding
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -28,12 +32,12 @@ class LanguagesTranslationScreen extends StatelessWidget {
                     languageCode: appCubit.locale.languageCode,
                     isDarkMode: appCubit.isDark,
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: screenHeight * 0.03), // Responsive spacing
                   Text(
-                    tr('Choose your preferred language:'),
+                    tr('Choose your preferred language:'), // Translatable text
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: screenHeight * 0.03), // Responsive spacing
                   Container(
                     width: double.infinity,
                     constraints: const BoxConstraints(maxWidth: 400), // Max width for better layout control
@@ -46,7 +50,7 @@ class LanguagesTranslationScreen extends StatelessWidget {
                           onTap: () => _showRestartDialog(context, 'en'),
                           isDarkMode: appCubit.isDark,
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: screenHeight * 0.02), // Responsive spacing
                         LanguageTile(
                           languageCode: 'ar',
                           languageName: 'Arabic',

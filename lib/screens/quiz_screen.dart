@@ -57,6 +57,9 @@ class _QuizScreenState extends State<QuizScreen> {
       );
     }
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.categoryTitle).tr(),
@@ -78,8 +81,8 @@ class _QuizScreenState extends State<QuizScreen> {
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
                           'Question ${currentQuestionIndex + 1} of ${shuffledQuestions.length}',
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.045, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -94,7 +97,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     child: Center(
                       child: Text(
                         currentQuestion,
-                        style: const TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: screenWidth * 0.05),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -108,7 +111,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       elevation: 4,
                       margin: const EdgeInsets.symmetric(vertical: 8.0),
                       child: ListTile(
-                        title: Text(option!),
+                        title: Text(option!, style: TextStyle(fontSize: screenWidth * 0.045)),
                         leading: Radio<String?>(
                           value: option,
                           groupValue: selectedAnswers[currentQuestionIndex],
@@ -188,16 +191,14 @@ class _QuizScreenState extends State<QuizScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'.tr(),
-                  style: const TextStyle(color: Colors.red)),
+              child: Text('Cancel'.tr(), style: const TextStyle(color: Colors.red)),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 _submitQuiz();
               },
-              child: Text('Submit'.tr(),
-                  style: const TextStyle(color: Colors.green)),
+              child: Text('Submit'.tr(), style: const TextStyle(color: Colors.green)),
             ),
           ],
         );
@@ -220,8 +221,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     // Save completed quiz category to SharedPreferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> completedQuizzes =
-        prefs.getStringList('completed_quizzes') ?? [];
+    List<String> completedQuizzes = prefs.getStringList('completed_quizzes') ?? [];
 
     if (!completedQuizzes.contains(widget.categoryTitle)) {
       completedQuizzes.add(widget.categoryTitle);

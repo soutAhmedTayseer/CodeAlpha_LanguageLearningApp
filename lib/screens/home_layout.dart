@@ -7,13 +7,11 @@ import 'package:flutter_projects/navigation_screens/games_screen.dart';
 import '../components/drawer/about_screen.dart';
 import '../components/drawer/themes_screen.dart';
 import '../navigation_screens/community_screen.dart';
-import '../components/api_for_movies.dart';
 import '../navigation_screens/entertainment_screen.dart';
 import '../navigation_screens/lessons_screen.dart';
 import '../navigation_screens/progress_screen.dart';
 import '../navigation_screens/quiz_categories_screen.dart';
 import 'languages_translation_screen.dart';
-
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});
@@ -25,6 +23,10 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
+    // MediaQuery for responsiveness
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {
         if (state is AppNavigateToThemesState) {
@@ -54,7 +56,8 @@ class _HomeLayoutState extends State<HomeLayout> {
             appBar: AppBar(
               title: Text(
                 tr('Language Learning App'), // Use `tr()` for translation
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: screenWidth * 0.05),
               ),
               centerTitle: true,
             ),
@@ -84,11 +87,14 @@ class _HomeLayoutState extends State<HomeLayout> {
                     ),
                     child: Row(
                       children: [
-                        const Icon(Icons.settings, size: 40, color: Colors.white),
-                        const SizedBox(width: 16),
+                        const Icon(Icons.settings,
+                            size: 40, color: Colors.white),
+                        SizedBox(width: screenWidth * 0.04),
                         Text(
                           tr('Settings'), // Apply `tr()` for translation
-                          style: const TextStyle(fontSize: 24, color: Colors.white),
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.06,
+                              color: Colors.white),
                         ),
                       ],
                     ),

@@ -30,103 +30,103 @@ class _LessonsState extends State<Lessons> {
     // Initialize the lesson data
     lessons = [
       LessonData(
-        title: 'Alphabet & Phonics',
-        description: 'Learn the English alphabet and basic sounds.',
+        title: 'Alphabet & Phonics'.tr(),
+        description: 'Learn the English alphabet and basic sounds.'.tr(),
         image: 'assets/images/cards_background/alpha.jpg',
         screen: AlphabetScreen(), // Placeholder screen
         isLocked: false, // First lesson unlocked
         isCompleted: false,
       ),
       LessonData(
-        title: 'Digits',
-        description: 'Learn digits from 1 to 10',
+        title: 'Digits'.tr(),
+        description: 'Learn digits from 1 to 10'.tr(),
         image: 'assets/images/cards_background/digits.jpg',
         screen: DigitsScreen(), // Placeholder screen
         isLocked: true,
         isCompleted: false,
       ),
       LessonData(
-        title: 'Colors',
-        description: 'Know more about colors',
+        title: 'Colors'.tr(),
+        description: 'Know more about colors'.tr(),
         image: 'assets/images/cards_background/colors.jpg',
         screen: ColorsScreen(), // Placeholder screen
         isLocked: true,
         isCompleted: false,
       ),
       LessonData(
-        title: 'Basic Vocabulary',
-        description: 'Learn everyday words like colors, numbers, and more.',
+        title: 'Basic Vocabulary'.tr(),
+        description: 'Learn everyday words like colors, numbers, and more.'.tr(),
         image: 'assets/images/cards_background/voc.jpg',
         screen: BasicVocabularyScreen(), // Placeholder screen
         isLocked: true,
         isCompleted: false,
       ),
-
       LessonData(
-        title: 'Basic Greetings',
-        description: 'Common phrases like "Hello" and "How are you?".',
+        title: 'Basic Greetings'.tr(),
+        description: 'Common phrases like "Hello" and "How are you?".'.tr(),
         image: 'assets/images/cards_background/gre.jpg',
         screen: BasicGreetingsScreen(),
         isLocked: true,
         isCompleted: false,
       ),
       LessonData(
-        title: 'Simple Sentences',
-        description: 'Understanding simple sentence structures.',
+        title: 'Simple Sentences'.tr(),
+        description: 'Understanding simple sentence structures.'.tr(),
         image: 'assets/images/cards_background/sent.jpg',
         screen: SimpleSentencesScreen(),
         isLocked: true,
         isCompleted: false,
       ),
       LessonData(
-        title: 'Pronouns & Prepositions',
-        description: 'Learn how to use pronouns and prepositions properly.',
+        title: 'Pronouns & Prepositions'.tr(),
+        description: 'Learn how to use pronouns and prepositions properly.'.tr(),
         image: 'assets/images/cards_background/pre.jpg',
         screen: PronounsPrepositionsScreen(),
         isLocked: true,
         isCompleted: false,
       ),
       LessonData(
-        title: 'Everyday Conversations',
-        description: 'Practice dialogues for common situations.',
+        title: 'Everyday Conversations'.tr(),
+        description: 'Practice dialogues for common situations.'.tr(),
         image: 'assets/images/cards_background/conv.jpg',
         screen: EverydayConversationsScreen(),
         isLocked: true,
         isCompleted: false,
       ),
       LessonData(
-        title: 'Present Simple Tense',
-        description: 'Forming sentences in the present tense.',
+        title: 'Present Simple Tense'.tr(),
+        description: 'Forming sentences in the present tense.'.tr(),
         image: 'assets/images/cards_background/present.jpg',
         screen: PresentSimpleTenseScreen(),
         isLocked: true,
         isCompleted: false,
       ),
       LessonData(
-        title: 'Past Simple Tense',
-        description: 'Understanding and using the past simple tense correctly.',
+        title: 'Past Simple Tense'.tr(),
+        description: 'Understanding and using the past simple tense correctly.'.tr(),
         image: 'assets/images/cards_background/past.jpg',
         screen: PastTenseScreen(),
         isLocked: true,
         isCompleted: false,
       ),
       LessonData(
-        title: 'Conditionals',
-        description: 'Learn conditional sentences (if/then).',
+        title: 'Conditionals'.tr(),
+        description: 'Learn conditional sentences (if/then).'.tr(),
         image: 'assets/images/cards_background/if.png',
         screen: ConditionalsScreen(),
         isLocked: true,
         isCompleted: false,
       ),
       LessonData(
-        title: 'Reported Speech',
-        description: 'How to report what others have said.',
+        title: 'Reported Speech'.tr(),
+        description: 'How to report what others have said.'.tr(),
         image: 'assets/images/cards_background/rep.jpg',
         screen: ReportedSpeechScreen(),
         isLocked: true,
         isCompleted: false,
       ),
     ];
+
     loadLessonUnlockStatus();
   }
 
@@ -235,9 +235,9 @@ class _LessonsState extends State<Lessons> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: Text('Unlock Lesson: ${lesson.title}'),
+                  title: Text(lesson.title).tr(),
                   content: const Text(
-                      'Complete the previous lesson to unlock this one.'),
+                      'Complete the previous lesson to unlock this one.').tr(),
                   actions: [
                     TextButton(
                       onPressed: () {
@@ -255,8 +255,8 @@ class _LessonsState extends State<Lessons> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: Text('Unlock Lesson: ${lesson.title}'),
-                  content: const Text('Do you want to unlock this lesson?'),
+                  title: Text(lesson.title).tr(),
+                  content: const Text('Do you want to unlock this lesson?').tr(),
                   actions: [
                     TextButton(
                       onPressed: () {

@@ -1,6 +1,5 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_projects/screens/result_screen.dart';
 
 class QuizResult {
@@ -26,9 +25,12 @@ class ResultsListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Quiz Results'),
+        title: const Text('Your Quiz Results').tr(),
       ),
       body: ListView.builder(
         itemCount: quizResults.length,
@@ -37,10 +39,19 @@ class ResultsListScreen extends StatelessWidget {
 
           return Card(
             elevation: 4,
-            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            margin: EdgeInsets.symmetric(
+              vertical: screenHeight * 0.01,
+              horizontal: screenWidth * 0.04,
+            ),
             child: ListTile(
-              title: Text(result.title),
-              subtitle: Text('Score: ${result.score} / ${result.totalQuestions}'),
+              title: Text(
+                result.title,
+                style: TextStyle(fontSize: screenWidth * 0.05),
+              ),
+              subtitle: Text(
+                'Score: ${result.score} / ${result.totalQuestions}',
+                style: TextStyle(fontSize: screenWidth * 0.04),
+              ),
               onTap: () {
                 Navigator.push(
                   context,

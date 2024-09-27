@@ -17,6 +17,9 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Quiz Results').tr(),
@@ -34,7 +37,10 @@ class ResultScreen extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Your Score: $score / $totalQuestions',
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: screenWidth * 0.06,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -44,7 +50,7 @@ class ResultScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: selectedAnswers.length,
                 itemBuilder: (context, index) {
-                  final question = 'Question ${index + 1}'; // Update to show question text if available
+                  final question = 'Question ${index + 1}';  // Customize if needed
                   final selectedAnswer = selectedAnswers[index];
                   final correctAnswer = correctAnswers[index];
 
@@ -62,16 +68,22 @@ class ResultScreen extends StatelessWidget {
                         children: [
                           Text(
                             question,
-                            style: const TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: screenWidth * 0.05),
                           ),
                           const SizedBox(height: 8),
                           Text(
                             'Your Answer: $selectedAnswer',
-                            style: TextStyle(color: answerColor),
+                            style: TextStyle(
+                              color: answerColor,
+                              fontSize: screenWidth * 0.045,
+                            ),
                           ),
                           Text(
                             'Correct Answer: $correctAnswer',
-                            style: const TextStyle(color: Colors.green),
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: screenWidth * 0.045,
+                            ),
                           ),
                         ],
                       ),

@@ -35,7 +35,7 @@ class _CategoriesScreenState
     // Filter categories based on the search query
     final filteredCategories = categories
         .where((category) =>
-        category['title'].toLowerCase().contains(searchQuery.toLowerCase()))
+            category['title'].toLowerCase().contains(searchQuery.toLowerCase()))
         .toList();
 
     // Create groups of four categories for each carousel
@@ -57,9 +57,9 @@ class _CategoriesScreenState
       appBar: AppBar(
         title: Center(
             child: const Text(
-              'Quizzes',
-              style: TextStyle(fontSize: 18),
-            ).tr()),
+          'Quizzes',
+          style: TextStyle(fontSize: 18),
+        ).tr()),
       ),
       body: Stack(
         children: [
@@ -91,13 +91,15 @@ class _CategoriesScreenState
                         children: [
                           // Header for each carousel
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 6.0),
                             child: Align(
-                              alignment: Alignment.centerLeft,
+                              alignment: Alignment.center,
                               child: Container(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Text(
-                                  carouselTitle,
+                                  carouselTitle
+                                      .tr(), // Call .tr() on the string
                                   style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -110,18 +112,19 @@ class _CategoriesScreenState
                             height: 10,
                           ),
                           SizedBox(
-                            height: 300, // Limit the height of each carousel
+                            height: MediaQuery.of(context).size.height *
+                                0.3, // Limit the height of each carousel
                             child: PageView.builder(
-                              controller: PageController(viewportFraction: 0.85),
+                              controller: PageController(viewportFraction: .9),
                               itemCount: threeCarousels[groupIndex]
                                   .length, // Set to the number of categories
                               itemBuilder: (context, index) {
                                 final category =
-                                threeCarousels[groupIndex][index];
+                                    threeCarousels[groupIndex][index];
 
                                 // Get the corresponding image for the category based on index
-                                final imageIndex =
-                                    groupIndex * 4 + index; // Calculate the index in categoryImages
+                                final imageIndex = groupIndex * 4 +
+                                    index; // Calculate the index in categoryImages
                                 final imagePath = categoryImages[imageIndex];
 
                                 return GestureDetector(
@@ -141,8 +144,7 @@ class _CategoriesScreenState
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 8.0),
                                     child: Container(
-                                      width:
-                                      150,
+                                      width: double.infinity,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(16),
                                         image: DecorationImage(
@@ -151,7 +153,8 @@ class _CategoriesScreenState
                                         ),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.black.withOpacity(0.2),
+                                            color:
+                                                Colors.black.withOpacity(0.2),
                                             spreadRadius: 2,
                                             blurRadius: 5,
                                           ),
@@ -163,8 +166,10 @@ class _CategoriesScreenState
                                           width: double.infinity,
                                           padding: const EdgeInsets.all(8.0),
                                           decoration: BoxDecoration(
-                                            color: Colors.black.withOpacity(0.6),
-                                            borderRadius: const BorderRadius.only(
+                                            color:
+                                                Colors.black.withOpacity(0.6),
+                                            borderRadius:
+                                                const BorderRadius.only(
                                               bottomLeft: Radius.circular(16),
                                               bottomRight: Radius.circular(16),
                                             ),
@@ -193,7 +198,8 @@ class _CategoriesScreenState
                               },
                             ),
                           ),
-                          const SizedBox(height: 16), // Spacing between carousels
+                          const SizedBox(
+                              height: 16), // Spacing between carousels
                         ],
                       );
                     },

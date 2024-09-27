@@ -23,7 +23,7 @@ class EntertainmentScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildSectionTitle(context, 'Movie Recommendations'),
+              Center(child: buildSectionTitle(context, 'Movie Recommendations')),
               buildCarousel([
                 {
                   'title': 'The Shawshank Redemption',
@@ -77,7 +77,7 @@ class EntertainmentScreen extends StatelessWidget {
                 },
               ]),
               const SizedBox(height: 20),
-              buildSectionTitle(context, 'Series Recommendations'),
+              Center(child: buildSectionTitle(context, 'Series Recommendations')),
               buildCarousel([
                 {
                   'title': 'Friends',
@@ -131,193 +131,131 @@ class EntertainmentScreen extends StatelessWidget {
                 },
               ]),
               const SizedBox(height: 20),
-              buildSectionTitle(context, 'Novel Recommendations'),
+              Center(child: buildSectionTitle(context, 'Novel Recommendations')),
               buildCarousel([
                 {
                   'title': 'To Kill a Mockingbird',
                   'image': 'assets/images/entertainment/21.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/_/PGR2AwAAQBAJ?hl=ar&gbpv=0'
+                  'https://www.google.com.eg/books/edition/_/PGR2AwAAQBAJ?hl=ar&gbpv=0'
                 },
                 {
                   'title': '1984 by George Orwell',
                   'image': 'assets/images/entertainment/22.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/1984/kotPYEqx7kMC?hl=ar&gbpv=0'
+                  'https://www.google.com.eg/books/edition/1984/kotPYEqx7kMC?hl=ar&gbpv=0'
                 },
                 {
                   'title': 'Pride and Prejudice',
                   'image': 'assets/images/entertainment/23.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/Pride_and_Prejudice/EvqJCGeqKhsC?hl=ar&gbpv=0&bsq=Pride%20and%20Prejudice'
+                  'https://www.google.com.eg/books/edition/Pride_and_Prejudice/EvqJCGeqKhsC?hl=ar&gbpv=0&bsq=Pride%20and%20Prejudice'
                 },
                 {
                   'title': 'The Great Gatsby',
                   'image': 'assets/images/entertainment/24.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/The_Great_Gatsby/iWA-DwAAQBAJ?hl=ar&gbpv=0'
+                  'https://www.google.com.eg/books/edition/The_Great_Gatsby/iWA-DwAAQBAJ?hl=ar&gbpv=0'
                 },
                 {
                   'title': 'Moby-Dick',
                   'image': 'assets/images/entertainment/25.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/Moby_Dick/cyrMu-gkGQQC?hl=ar&gbpv=0'
+                  'https://www.google.com.eg/books/edition/Moby_Dick/cyrMu-gkGQQC?hl=ar&gbpv=0'
                 },
                 {
                   'title': 'War and Peace',
                   'image': 'assets/images/entertainment/26.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/War_and_Peace/jVMEAAAAYAAJ?hl=ar&gbpv=0'
+                  'https://www.google.com.eg/books/edition/War_and_Peace/jVMEAAAAYAAJ?hl=ar&gbpv=0'
                 },
                 {
                   'title': 'The Catcher in the Rye',
                   'image': 'assets/images/entertainment/27.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/Salinger_s_The_Catcher_in_the_Rye/htdSEMt1ZKAC?hl=ar&gbpv=0'
+                  'https://www.google.com.eg/books/edition/Salinger_s_The_Catcher_in_the_Rye/htdSEMt1ZKAC?hl=ar&gbpv=0'
                 },
                 {
                   'title': 'Brave New World',
                   'image': 'assets/images/entertainment/28.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/Brave_New_World/ZiLvDwAAQBAJ?hl=ar&gbpv=0'
+                  'https://www.google.com.eg/books/edition/Brave_New_World/ZiLvDwAAQBAJ?hl=ar&gbpv=0'
                 },
                 {
                   'title': 'The Alchemist',
                   'image': 'assets/images/entertainment/29.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/The_Alchemist/6uHQg0YPcScC?hl=ar&gbpv=0'
+                  'https://www.google.com.eg/books/edition/The_Alchemist/6uHQg0YPcScC?hl=ar&gbpv=0'
                 },
                 {
                   'title': 'The Hobbit',
                   'image': 'assets/images/entertainment/30.jpg',
                   'link':
-                      'https://www.google.com.eg/books/edition/The_Hobbit/pD6arNyKyi8C?hl=ar'
+                  'https://www.google.com.eg/books/edition/The_Hobbit/pD6arNyKyi8C?hl=ar'
                 },
               ]),
               const SizedBox(height: 20),
-              buildSectionTitle(context, 'Music Recommendations'),
+              Center(child: buildSectionTitle(context, 'Music Recommendations')),
               buildCarousel([
                 {
                   'title': 'Die With A Smile',
                   'image': 'assets/images/entertainment/31.jpg',
                   'link':
-                      'https://open.spotify.com/track/2plbrEY59IikOBgBGLjaoe?si=24b4f138702d4a21'
+                  'https://open.spotify.com/track/2plbrEY59IikOBgBGLjaoe?si=24b4f138702d4a21'
                 },
                 {
                   'title': 'Born To Die',
                   'image': 'assets/images/entertainment/32.jpg',
                   'link':
-                      'https://open.spotify.com/track/4Ouhoi2lAhrLJKFzUqEzwl?si=7f7adb0a9a24409e'
+                  'https://open.spotify.com/track/4Ouhoi2lAhrLndQOdWXb1t?si=27c59e299cbf4c5d'
                 },
                 {
-                  'title': 'Sweater Weather',
+                  'title': 'Old Town Road',
                   'image': 'assets/images/entertainment/33.jpg',
                   'link':
-                      'https://open.spotify.com/track/2QjOHCTQ1Jl3zawyYOpxh6?si=396e0c1783b94247'
+                  'https://open.spotify.com/track/6uC2D3jQQXJ1lEdJ0k3nS4?si=4c1e9b5824904318'
+                },
+                {
+                  'title': 'Halo',
+                  'image': 'assets/images/entertainment/34.jpg',
+                  'link':
+                  'https://open.spotify.com/track/6EefOAKRf4Eu8Ptt65aTUk?si=02b1656c43474f84'
+                },
+                {
+                  'title': 'Someone Like You',
+                  'image': 'assets/images/entertainment/35.jpg',
+                  'link':
+                  'https://open.spotify.com/track/0oTq0m32B4Db8m5MsMjGzU?si=19b70c2c84e84a9e'
+                },
+                {
+                  'title': 'Firework',
+                  'image': 'assets/images/entertainment/36.jpg',
+                  'link':
+                  'https://open.spotify.com/track/5pqYI6MWmlnW0aYUFOVrUs?si=c70862fc410b493e'
+                },
+                {
+                  'title': 'Shape of You',
+                  'image': 'assets/images/entertainment/37.jpg',
+                  'link':
+                  'https://open.spotify.com/track/7qiZQnGQQ5P6wCD4GIk6lL?si=83a9f53dc7bb4d7b'
                 },
                 {
                   'title': 'Bad Guy',
-                  'image': 'assets/images/entertainment/34.jpg',
-                  'link':
-                      'https://open.spotify.com/track/2Fxmhks0bxGSBdJ92vM42m?si=04ff2d6bc43b40f5'
-                },
-                {
-                  'title': 'Swim',
-                  'image': 'assets/images/entertainment/35.jpg',
-                  'link':
-                      'https://open.spotify.com/track/3M0lSi5WW79CXQamgSBIjx?si=38cb1daec0a04f06'
-                },
-                {
-                  'title': '505',
-                  'image': 'assets/images/entertainment/36.jpg',
-                  'link': 'https://open.spotify.com/track/0BxE4FqsDD1Ot4YuBXwAPp?si=7ba19cbb996f4dec'
-                },
-                {
-                  'title': 'Skyfall',
-                  'image': 'assets/images/entertainment/37.jpg',
-                  'link': 'https://open.spotify.com/track/6VObnIkLVruX4UVyxWhlqm?si=805d4a95e77f4492'
-                },
-                {
-                  'title': 'Let Her Go',
                   'image': 'assets/images/entertainment/38.jpg',
-                  'link': 'https://open.spotify.com/track/5rEvuW4YhwobKwGL1HPrXA?si=0ee115bcab244cb1'
+                  'link':
+                  'https://open.spotify.com/track/0ZkvBRgGQ2qP4PfS3tC44v?si=b8b69b4a2dc84767'
+                },
+                {
+                  'title': 'I Will Always Love You',
+                  'image': 'assets/images/entertainment/39.jpg',
+                  'link':
+                  'https://open.spotify.com/track/5zV0p4tDLp4KmH09vU5yBC?si=1a0bde01a2d34056'
                 },
                 {
                   'title': 'Blinding Lights',
-                  'image': 'assets/images/entertainment/39.jpg',
-                  'link':
-                      'https://open.spotify.com/track/0VjIjW4GlUZAMYd2vXMi3b?si=c93eb39b623f4d72'
-                },
-                {
-                  'title': 'Sunflower',
                   'image': 'assets/images/entertainment/40.jpg',
                   'link':
-                      'https://open.spotify.com/track/0RiRZpuVRbi7oqRdSMwhQY?si=9189fc10254d4edd'
-                },
-              ]),
-              const SizedBox(height: 20),
-              buildSectionTitle(context, 'Learn English YouTube Videos'),
-              buildCarousel([
-                {
-                  'title':
-                      'Learn English in 30 Minutes - ALL the English Basics You Need',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=Learn+English+in+30+Minutes+-+ALL+the+English+Basics+You+Need'
-                },
-                {
-                  'title': 'Learn English Through Story - The Stranger',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=learn+english+through+story+the+stranger'
-                },
-                {
-                  'title': 'BBC Learning English - Tim’s Pronunciation Workshop',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=BBC+Learning+English+-+Tim%E2%80%99s+Pronunciation+Workshop'
-                },
-                {
-                  'title': 'Learn English with TV Series',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=learn+english+with+tv+series'
-                },
-                {
-                  'title': 'English Conversation Practice',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=English+Conversation+Practice'
-                },
-                {
-                  'title': 'English Listening Practice',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=English+Listening+Practice'
-                },
-                {
-                  'title': 'Speak English Like a Native',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=Speak+English+Like+a+Native'
-                },
-                {
-                  'title': 'English Pronunciation Tutorial',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=English+Pronunciation+Tutorial'
-                },
-                {
-                  'title': 'Learn English Vocabulary',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=Learn+English+Vocabulary'
-                },
-                {
-                  'title': 'English Grammar for Beginners',
-                  'image': 'assets/images/entertainment/y.jpg',
-                  'link':
-                      'https://www.youtube.com/results?search_query=English+Grammar+for+Beginners'
+                  'https://open.spotify.com/track/0VTo2h2DoVvQ8g23eXW0RZ?si=32b0e78c2af9419d'
                 },
               ]),
             ],
@@ -327,97 +265,49 @@ class EntertainmentScreen extends StatelessWidget {
     );
   }
 
-  // Function to build a section title
   Widget buildSectionTitle(BuildContext context, String title) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Text(
-        title,
-        style: Theme.of(context)
-            .textTheme
-            .titleLarge
-            ?.copyWith(fontWeight: FontWeight.bold),
-      ).tr(),
+        title.tr(),
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 
-  // Function to build the interactive carousel
   Widget buildCarousel(List<Map<String, String>> items) {
-    return CarouselSlider.builder(
+    return CarouselSlider(
       options: CarouselOptions(
         height: 500,
         enlargeCenterPage: true,
         autoPlay: true,
-        aspectRatio: 16 / 9,
-        autoPlayCurve: Curves.fastOutSlowIn,
-        enableInfiniteScroll: true,
+        autoPlayInterval: const Duration(seconds: 5),
         autoPlayAnimationDuration: const Duration(milliseconds: 800),
-        viewportFraction: 0.8,
+        autoPlayCurve: Curves.fastOutSlowIn,
       ),
-      itemCount: items.length,
-      itemBuilder: (context, index, realIndex) {
-        final item = items[index];
-        return buildCarouselItem(item['image']!, item['title']!, item['link']!);
-      },
+      items: items.map((item) {
+        return Builder(
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () => launchUrl(Uri.parse(item['link']!)),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
+                    image: AssetImage(item['image']!),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      }).toList(),
     );
-  }
-
-// Function to build each carousel item with a clickable link and title overlaid on the image
-  Widget buildCarouselItem(String imagePath, String title, String link) {
-    return GestureDetector(
-      onTap: () => _launchURL(link),
-      child: Stack(
-        children: [
-          // Image displayed with rounded corners
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              imagePath,
-              fit: BoxFit.fill,
-              height: double.infinity, // Make image fill the container
-              width: double.infinity,
-            ),
-          ),
-          // Positioned title text
-          // Positioned(
-          //   bottom: 0, // Position title near the bottom of the image
-          //   left: 0,
-          //   right: 0,
-          //   child: Container(
-          //     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          //     color: Colors.black54, // Semi-transparent background for better visibility
-          //     child: Text(
-          //       title,
-          //       textAlign: TextAlign.center,
-          //       style: const TextStyle(
-          //         color: Colors.white,
-          //         fontSize: 28,
-          //         fontWeight: FontWeight.bold,
-          //         shadows: [
-          //           Shadow(
-          //             offset: Offset(2, 2),
-          //             blurRadius: 3.0,
-          //             color: Colors.black54, // Shadow to make the text stand out
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
-        ],
-      ),
-    );
-  }
-
-
-  // Function to launch URL
-  Future<void> _launchURL(String url) async {
-    final Uri uri = Uri.parse(url); // Convert string to Uri
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri,
-          mode: LaunchMode.externalApplication); // Open in external application
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

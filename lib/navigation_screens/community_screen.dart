@@ -153,18 +153,18 @@ class _ForumScreenState extends State<CommunityScreen> {
         String title = '';
         String content = '';
         return AlertDialog(
-          title: const Text('Add New Post'),
+          title:  Text('Add New Post'.tr()),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration:  InputDecoration(labelText: 'Title'.tr()),
                 onChanged: (value) {
                   title = value;
                 },
               ),
               TextField(
-                decoration: const InputDecoration(labelText: 'Content'),
+                decoration:  InputDecoration(labelText: 'Content'.tr()),
                 onChanged: (value) {
                   content = value;
                 },
@@ -182,9 +182,9 @@ class _ForumScreenState extends State<CommunityScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.cyan,
               ),
-              child: const Text(
-                'Add',
-                style: TextStyle(color: Colors.white),
+              child:  Text(
+                'Add'.tr(),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ],
@@ -198,7 +198,7 @@ class _ForumScreenState extends State<CommunityScreen> {
       context: context,
       builder: (ctx) {
         return AlertDialog(
-          title: const Text('Delete Post'),
+          title:  Text('Delete Post'.tr()),
           content: const Text('Are you sure you want to delete this post?'),
           actions: [
             TextButton(
@@ -206,18 +206,18 @@ class _ForumScreenState extends State<CommunityScreen> {
                 _deletePost(index);
                 Navigator.of(ctx).pop();
               },
-              child: const Text(
-                'Delete',
-                style: TextStyle(color: Colors.red),
+              child:  Text(
+                'Delete'.tr(),
+                style: const TextStyle(color: Colors.red),
               ),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(ctx).pop();
               },
-              child: const Text(
-                'Cancel',
-                style: TextStyle(color: Colors.blue),
+              child:  Text(
+                'Cancel'.tr(),
+                style: const TextStyle(color: Colors.blue),
               ),
             ),
           ],
@@ -230,7 +230,7 @@ class _ForumScreenState extends State<CommunityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: const Text('Community Forum',style: TextStyle(fontSize: 18),).tr()),
+        title: Center(child:  Text('Community Forum'.tr(),style: const TextStyle(fontSize: 18),).tr()),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -295,13 +295,13 @@ class _ForumScreenState extends State<CommunityScreen> {
                                     context: context,
                                     builder: (ctx) {
                                       return AlertDialog(
-                                        title: const Text('Add Comment'),
+                                        title:  Text('Add Comment'.tr()),
                                         content: TextField(
                                           onChanged: (value) {
                                             comment = value;
                                           },
-                                          decoration: const InputDecoration(
-                                              labelText: 'Comment'),
+                                          decoration:  InputDecoration(
+                                              labelText: 'Comment'.tr()),
                                         ),
                                         actions: [
                                           ElevatedButton(
@@ -311,7 +311,7 @@ class _ForumScreenState extends State<CommunityScreen> {
                                                 Navigator.of(ctx).pop();
                                               }
                                             },
-                                            child: const Text('Add'),
+                                            child:  Text('Add'.tr()),
                                           ),
                                         ],
                                       );
@@ -322,9 +322,9 @@ class _ForumScreenState extends State<CommunityScreen> {
                             ],
                           ),
                           const Divider(),
-                          const Text(
-                            'Comments:',
-                            style: TextStyle(
+                           Text(
+                            'Comments:'.tr(),
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
                           const SizedBox(height: 5),
