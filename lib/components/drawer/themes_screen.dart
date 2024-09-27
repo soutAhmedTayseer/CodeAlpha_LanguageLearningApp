@@ -15,6 +15,18 @@ class ThemesScreen extends StatelessWidget {
         final appCubit = AppCubit.get(context);
 
         return Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Center(
+              child: Text(
+                'Themes'.tr(),
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

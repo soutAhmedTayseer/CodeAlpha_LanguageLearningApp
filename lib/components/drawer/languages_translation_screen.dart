@@ -21,6 +21,18 @@ class LanguagesTranslationScreen extends StatelessWidget {
         final appCubit = AppCubit.get(context);
 
         return Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Center(
+              child: Text(
+                'Switch Languages'.tr(),
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
           body: Padding(
             padding: EdgeInsets.all(screenWidth * 0.04), // Responsive padding
             child: Center(

@@ -281,7 +281,7 @@ class EntertainmentScreen extends StatelessWidget {
   Widget buildCarousel(List<Map<String, String>> items) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 500,
+        height: 430,
         enlargeCenterPage: true,
         autoPlay: true,
         autoPlayInterval: const Duration(seconds: 5),

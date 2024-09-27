@@ -11,7 +11,7 @@ import '../navigation_screens/entertainment_screen.dart';
 import '../navigation_screens/lessons_screen.dart';
 import '../navigation_screens/progress_screen.dart';
 import '../navigation_screens/quiz_categories_screen.dart';
-import 'languages_translation_screen.dart';
+import '../components/drawer/languages_translation_screen.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});

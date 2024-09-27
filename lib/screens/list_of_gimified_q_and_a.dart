@@ -104,7 +104,7 @@ List<Question> getColorQuestions() {
     ),
     Question(
       soundPath: 'sounds/colors/gray.mp3',
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/gray.jpg', 'assets/images/gamified_xp/green.jpg'],
     ),
   ];
@@ -113,53 +113,53 @@ List<Question> getColorQuestions() {
 List<Question> getNumberQuestions() {
   return [
     Question(
-      soundPath: 'sounds/numbers/one.mp3',
+      soundPath: 'sounds/digits/1.mp3',
       correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/one.jpg', 'assets/images/gamified_xp/two.jpg'],
     ),
     Question(
-      soundPath: 'sounds/numbers/two.mp3',
+      soundPath: 'sounds/digits/2.mp3',
       correctAnswerIndex: 1,
       options: ['assets/images/gamified_xp/three.jpg', 'assets/images/gamified_xp/two.jpg'],
     ),
     Question(
-      soundPath: 'sounds/numbers/three.mp3',
+      soundPath: 'sounds/digits/3.mp3',
       correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/three.jpg', 'assets/images/gamified_xp/four.jpg'],
     ),
     Question(
-      soundPath: 'sounds/numbers/four.mp3',
-      correctAnswerIndex: 1,
+      soundPath: 'sounds/digits/4.mp3',
+      correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/four.jpg', 'assets/images/gamified_xp/five.jpg'],
     ),
     Question(
-      soundPath: 'sounds/numbers/five.mp3',
+      soundPath: 'sounds/digits/5.mp3',
       correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/five.jpg', 'assets/images/gamified_xp/six.jpg'],
     ),
     Question(
-      soundPath: 'sounds/numbers/six.mp3',
-      correctAnswerIndex: 1,
+      soundPath: 'sounds/digits/6.mp3',
+      correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/six.jpg', 'assets/images/gamified_xp/seven.jpg'],
     ),
     Question(
-      soundPath: 'sounds/numbers/seven.mp3',
+      soundPath: 'sounds/digits/7.mp3',
       correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/seven.jpg', 'assets/images/gamified_xp/eight.jpg'],
     ),
     Question(
-      soundPath: 'sounds/numbers/eight.mp3',
+      soundPath: 'sounds/digits/8.mp3',
       correctAnswerIndex: 1,
       options: ['assets/images/gamified_xp/nine.jpg', 'assets/images/gamified_xp/eight.jpg'],
     ),
     Question(
-      soundPath: 'sounds/numbers/nine.mp3',
+      soundPath: 'sounds/digits/9.mp3',
       correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/nine.jpg', 'assets/images/gamified_xp/ten.jpg'],
     ),
     Question(
-      soundPath: 'sounds/numbers/ten.mp3',
-      correctAnswerIndex: 1,
+      soundPath: 'sounds/digits/10.mp3',
+      correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/ten.jpg', 'assets/images/gamified_xp/one.jpg'],
     ),
   ];
@@ -204,7 +204,7 @@ List<Question> getShapeQuestions() {
     ),
     Question(
       soundPath: 'sounds/shapes/pentagon.mp3',
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 0,
       options: ['assets/images/gamified_xp/pentagon.jpg', 'assets/images/gamified_xp/square.jpg'],
     ),
     Question(
